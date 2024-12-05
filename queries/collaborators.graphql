@@ -1,0 +1,20 @@
+query($owner: String!, $name: String!, $cursor: String) {
+  repository(owner: $owner, name: $name) {
+    id
+    collaborators(first: 100, after: $cursor) {
+      edges {
+        permission
+        node {
+          id
+          login
+          name
+          email
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}

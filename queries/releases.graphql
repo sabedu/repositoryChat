@@ -1,0 +1,27 @@
+query($owner : String!, $name: String!, $after_clause: String){
+    repository(owner: $owner, name:$name) {
+        id
+        releases(first: 100, after: $after_clause){
+            nodes{
+                author{
+                    ... on User{
+                        email
+                        id
+                        login
+                        name
+                    }
+                }
+                isLatest
+                createdAt
+                description
+                id
+                name
+                url
+            }
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.env
+.idea
+__pycache__
+.venv
+data
+_szztemp
+repos
+.DS_Store
+.streamlit
+logs/
+venv/
+logs_op/
+* copy.py
+graphs/
+* copy
+data0/
+DockerFile
+DockerFile.dev
+DockerFile.prod
+.dockerignore
+.github/
+docker-compose.yml
+wsgi.py

@@ -1,0 +1,33 @@
+query($owner : String!, $name: String!, $after_clause: String){
+    repository(owner: $owner, name:$name) {
+        id
+        projects(first:100, after: $after_clause){
+            nodes{
+                id
+                body
+                number
+                state
+                progress{
+                    donePercentage
+                    todoPercentage
+                    inProgressPercentage
+                }
+                name
+                url
+                createdAt
+                creator {
+                  ... on User{
+                      login
+                      id
+                      name
+                      email
+                  }
+                }
+            }
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+        }
+    }
+}

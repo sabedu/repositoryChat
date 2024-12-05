@@ -1,0 +1,48 @@
+query($owner:String!, $name:String!, $after_clause:String){
+  repository(owner: $owner, name: $name) {
+    id
+    issues(first: 100, after: $after_clause) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        author {
+          ... on User{
+            login
+            name
+            id
+            email
+          }
+        }
+        assignees(first:100){
+          nodes{
+            login
+            email
+            name
+            id
+          }
+        }
+        body
+        createdAt
+        id
+        number
+        participants(first:100){
+          nodes{
+            login
+            id
+            name
+            email
+          }
+        }
+        state
+        title
+        updatedAt
+        closedAt
+        stateReason
+        url
+      }
+    }
+  }
+}
+

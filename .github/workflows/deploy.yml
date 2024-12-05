@@ -1,0 +1,29 @@
+name: Deployment to DigitalOcean Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to Droplet
+        run: |
+          sshpass -p ${{ secrets.DROPLET_PASSWORD }} ssh -o StrictHostKeyChecking=no root@147.182.158.104 <<EOF
+            cd /root/repochat.tool
+            git pull origin main
+            source venv/bin/activate
+            pip install -r requirements.txt
+            supervisorctl restart repochat.tool
+          EOF

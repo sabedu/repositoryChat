@@ -1,0 +1,16 @@
+query($owner : String!, $name: String!, $after_clause: String){
+    repository(owner: $owner, name:$name) {
+        id
+        forks(first:100, after: $after_clause){
+            nodes{
+                name
+                id
+                url
+            }
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+        }
+    }
+}

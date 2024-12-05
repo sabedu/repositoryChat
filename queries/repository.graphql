@@ -1,0 +1,33 @@
+query($owner : String!, $name: String!, $after_clause: String){
+  repository(owner: $owner, name:$name) {
+    description
+    id
+    name
+    url
+    stargazerCount
+    visibility
+    primaryLanguage{
+      id
+    }
+    owner{
+      ... on User{
+        id
+        login
+        name
+        email
+      }
+    }
+    forkCount
+    isTemplate
+    refs(refPrefix: "refs/heads/", first:100, after: $after_clause){
+      nodes{
+        id
+        name
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}

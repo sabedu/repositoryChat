@@ -1,0 +1,70 @@
+query($owner :String!, $name: String!, $after_clause:String){
+  repository(owner: $owner, name: $name){
+    id
+    pullRequests(first:60, after:$after_clause){
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+        nodes {
+          assignees(first:100){
+            nodes{
+              login
+              email
+              name
+              id
+            }
+          }
+          author{
+            ... on User{
+              name
+              login
+              id
+              email
+            }
+          }
+          body
+          changedFiles
+          closingIssuesReferences(first:100){
+            nodes{
+              number
+            }
+          }
+          commits(first:100){
+            nodes{
+              commit{
+                oid
+              }
+            }
+          }
+          createdAt
+          files (first:100){
+            nodes{
+              changeType
+              path
+              additions
+              deletions
+            }
+          }
+          id
+          number
+          participants(first:100){
+            nodes{
+              login
+              name
+              id
+              email
+            }
+          }
+          state
+          title
+          updatedAt
+          closedAt
+          url
+          comments{
+            totalCount
+          }
+        }
+      }
+    }
+  }
