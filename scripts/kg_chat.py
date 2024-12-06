@@ -17,11 +17,10 @@ logger = getLogger(__name__)
 
 class KGChat:
     def __init__(self, api_key, model, neo4j_uri, neo4j_user, neo4j_password):
-        # load_dotenv()
         logger.info("Creating KGChat Instance")
-        self.uri = neo4j_uri #getenv("NEO4J_URI")
-        self.user = neo4j_user #getenv('NEO4J_USER')
-        self.password = neo4j_password #getenv('NEO4J_PASSWORD')
+        self.uri = neo4j_uri 
+        self.user = neo4j_user 
+        self.password = neo4j_password
         self.api_key = api_key
         self.model = model
         self.graph = Neo4jGraph(url=self.uri, username=self.user, password=self.password)
@@ -33,13 +32,6 @@ class KGChat:
             cypher_llm = ChatOpenAI(temperature=0, model=self.model, api_key=self.api_key)
             qa_llm = ChatOpenAI(temperature=0.7, model=self.model, api_key=self.api_key)
             generation_template = GENERATION_TEMPLATE
-            # if learning_type == 'zero-shot':
-            #     cypher_template = ZERO_SHOT_CYPHER_TEMPLATE
-            # elif learning_type == 'few-shot':
-            #     cypher_template = FEW_SHOT_CYPHER_TEMPLATE
-            # else:
-            #     logger.exception(f"Unsupported learning type: {learning_type}")
-            #     raise ValueError('Invalid learning type')
             cypher_template = FEW_SHOT_CYPHER_TEMPLATE
 
         elif self.model == "llama3":
@@ -92,9 +84,6 @@ class KGChat:
     
     @traceable()
     def query(self, user_input, session_id: str,  learning_type='zero-shot'):
-        # chain = self.make_chain(learning_type)
-        # logger.info("Invoking LLM chain")
-        # response = chain.invoke(user_input)
         config = {"configurable": {"session_id": session_id}}
         chain = self.get_chain_with_message_history(learning_type)
         response = chain.invoke(

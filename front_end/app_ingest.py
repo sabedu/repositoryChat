@@ -26,17 +26,11 @@ def ingest_screen():
     st.session_state['messages'] = []
 
     with st.form("ingest_form"):
-        st.session_state.repo_url = ""
-        st.session_state.gh_token = ""
-        st.session_state.neo4j_uri = ""
-        st.session_state.neo4j_user = ""
-        st.session_state.neo4j_password = ""
-    
-        repo_url = st.text_input("GitHub Repository URL", key='repo_url')
-        gh_token = st.text_input("GitHub Token", type="password", key='gh_token')
-        neo4j_uri = st.text_input("Neo4j URI", key='neo4j_uri')
-        neo4j_user = st.text_input("Neo4j User", key='neo4j_user')
-        neo4j_password = st.text_input("Neo4j Password", type="password", key='neo4j_password')
+        repo_url = st.text_input("GitHub Repository URL", key='repo_url', value="")
+        gh_token = st.text_input("GitHub Token", type="password", key='gh_token', value="")
+        neo4j_uri = st.text_input("Neo4j URI", key='neo4j_uri', value="")
+        neo4j_user = st.text_input("Neo4j User", key='neo4j_user', value="")
+        neo4j_password = st.text_input("Neo4j Password", type="password", key='neo4j_password', value="")
 
         submitted = st.form_submit_button("Ingest Data")
         if submitted:

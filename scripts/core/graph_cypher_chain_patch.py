@@ -19,10 +19,8 @@ def extract_cypher(text: str) -> str:
     Returns:
         Cypher code extracted from the text.
     """
-    # The pattern to find Cypher code enclosed in triple backticks
     pattern = r"```(.*?)```"
 
-    # Find all matches in the input text
     matches = re.findall(pattern, text, re.DOTALL)
 
     return matches[-1] if matches else text
@@ -105,13 +103,11 @@ class PatchedGraphCypherQAChain(GraphCypherQAChain):
                       "error_context": error_context,
                       "current_date": {datetime.now(timezone.utc).replace(microsecond=0).isoformat() + 'Z'}}
         generated_cypher_text = self.cypher_generation_chain.invoke(prompt, callbacks=callbacks)
-        logger.info(f"Generated Cypher text is {generated_cypher_text["text"]}")
+        logger.info(f"Generated Cypher text is {generated_cypher_text['text']}")
 
-        # Extract Cypher code if it is wrapped in backticks
         generated_cypher = extract_cypher(generated_cypher_text["text"])
 
         logger.info(f"Cypher statement before corrector is {generated_cypher}")
-        # Correct Cypher query if enabled
         if self.cypher_query_corrector:
             generated_cypher = self.cypher_query_corrector(generated_cypher)
 
@@ -122,17 +118,13 @@ class PatchedGraphCypherQAChain(GraphCypherQAChain):
         if generated_cypher:
             try:
                 context = self.graph.query(generated_cypher)
-                # context = self.graph.query(generated_cypher)[: self.top_k]
             except Exception as e:
-                # If an error occurs, regenerate the Cypher query
                 logger.error(f"Error executing Cypher query: {e}")
                 logger.info("Regenerating query...")
                 error_context = f"Original query: {generated_cypher}\nError: {e}\n"
 
                 generated_cypher, _ = self.generate_cypher(question, chat_history, callbacks, error_context=error_context)
-                # Execute the new query
                 try:
-                    # context = self.graph.query(generated_cypher)[: self.top_k]
                     context = self.graph.query(generated_cypher)
                 except Exception as e:
                     logger.exception(f"Error executing Cypher query: {e} even after re-generating it.")
@@ -168,9 +160,6 @@ class PatchedGraphCypherQAChain(GraphCypherQAChain):
 
         intermediate_steps.append({"query": generated_cypher})
 
-        # Retrieve and limit the number of results
-        # Generated Cypher be null if query corrector identifies invalid schema
-
         context = self.get_context(question=question, generated_cypher=generated_cypher, chat_history=chat_history, callbacks=callbacks)
         if not context:
             logger.info("No context found")
@@ -202,7 +191,6 @@ class PatchedGraphCypherQAChain(GraphCypherQAChain):
 
         chain_result: Dict[str, Any] = {self.output_key: final_result, "output": final_result, "cot_text": generated_cypher_text["text"]}
         chain_result["output"] = final_result
-        # if self.return_intermediate_steps:
         chain_result[INTERMEDIATE_STEPS_KEY] = intermediate_steps
 
         return chain_result

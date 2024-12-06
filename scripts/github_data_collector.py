@@ -124,26 +124,9 @@ class GitHubDataCollector:
             json.dump(repository_data, f, ensure_ascii=False, indent=4)
             f.write(']')
 
-    # def get_additional_commit_details(self, commit_sha):
-    #     try:
-    #         commit = self.repo.get_commit(sha=commit_sha)
-    #         modified_files = [
-    #             {
-    #                 "filename": file.filename,
-    #                 "change_type": file.status,
-    #                 "additions": file.additions,
-    #                 "deletions": file.deletions
-    #             } for file in commit.files
-    #         ]
-    #         return modified_files
-    #     except Exception as e:
-    #         logger.error(f"Error occurred while getting additional commit details: {e}", exc_info=True)
-    #         return []
-        
     def get_additional_commit_details(self, commit_sha):
         logger.info(f"Collecting details for commit {commit_sha}")
         try:
-            # Get the diff with stats for the commit
             diff_output = self.run_git_command([
                 'show', '--pretty=', '--numstat', commit_sha
             ])
@@ -196,76 +179,6 @@ class GitHubDataCollector:
             logger.error(f"Error occurred while getting additional commit details: {e}", exc_info=True)
             return []
 
-
-    # def collect_all_commits(self):
-    #     logger.info("Collecting all commits")
-    #     file_path = f'{self.base_dir}/{self.repo_name}_commits.json'
-
-    #     with open(file_path, 'w', encoding='utf-8') as f:
-    #         f.write('[')
-
-    #     try:
-    #         has_next_page = True
-    #         after_cursor = None
-
-    #         first_write = True
-
-    #         while has_next_page:
-    #             data = self.get_all_instances_of_entity('commits', after_cursor=after_cursor)
-    #             repository_id = data['repository']['id']
-    #             branch_id = data['repository']['defaultBranchRef']['id']
-    #             commits = data['repository']['defaultBranchRef']['target']['history']['nodes']
-
-    #             for commit in commits:
-    #                 if commit['author']['user'] is None:
-    #                     if commit['committer']['user'] is None:
-    #                         logger.error(f"Commit with no author and no committer: {commit}")
-    #                         continue
-    #                 modified_files = self.get_additional_commit_details(commit['oid'])
-    #                 comments_count = commit.get('comments', {}).get('totalCount', 0)
-    #                 parents = commit.get('parents', [])
-    #                 commit_data = {
-    #                     'repository_id': repository_id,
-    #                     'branch_id': branch_id,
-    #                     "hash": commit['oid'],
-    #                     "message": commit['message'],
-    #                     "changed_files_if_available": commit['changedFilesIfAvailable'],
-    #                     "additions": commit['additions'],
-    #                     "deletions": commit['deletions'],
-    #                     "comments_count": comments_count,
-    #                     "abbreviatedOid": commit['abbreviatedOid'],
-    #                     "committedDate": commit['committedDate'],
-    #                     "parents": parents['nodes'],
-    #                     "author_login": commit['author']['user']['login'] if commit['author']['user'] is not None else
-    #                     commit['committer']['user']['login'] if commit['committer']['user'] is not None else None,
-    #                     'author_id': commit['author']['user']['id'] if commit['author']['user'] is not None else
-    #                     commit['committer']['user']['id'] if commit['committer']['user'] is not None else None,
-    #                     'author_name': commit['author']['user']['name'] if commit['author']['user'] is not None else
-    #                     commit['committer']['user']['name'] if commit['committer']['user'] is not None else None,
-    #                     'author_email': commit['author']['user']['email'] if commit['author']['user'] is not None else
-    #                     commit['committer']['user']['email'] if commit['committer']['user'] is not None else None,
-    #                     "modified_files": modified_files
-    #                 }
-
-    #                 with open(file_path, 'a', encoding='utf-8') as f:
-    #                     if not first_write:
-    #                         f.write(',')
-    #                     else:
-    #                         first_write = False
-    #                     json.dump(commit_data, f, ensure_ascii=False, indent=4)
-
-    #             pageInfo = data['repository']['defaultBranchRef']['target']['history']['pageInfo']
-    #             has_next_page = pageInfo['hasNextPage']
-    #             after_cursor = pageInfo['endCursor']
-
-    #         # with open(file_path, 'a', encoding='utf-8') as f:
-    #         #     f.write(']')
-    #     except Exception as e:
-    #         logger.error(f"Error occurred while collecting commits: {e}", exc_info=True)
-    #     finally:
-    #         with open(file_path, 'a', encoding='utf-8') as f:
-    #             f.write(']')
-
     def collect_all_commits(self):
         logger.info("Collecting all commits")
         file_path = os.path.join(self.base_dir, f'{self.repo_name}_commits.json')
@@ -309,78 +222,6 @@ class GitHubDataCollector:
             logger.error(f"Error occurred while collecting commits: {e}", exc_info=True)
 
 
-    # def update_commits(self, last_collected_date):
-    #     file_path = f'{self.base_dir}/{self.repo_name}_commits.json'
-    #     update_path = f'{self.base_dir}/new_{self.repo_name}_commits.json'
-    #     has_next_page = True
-    #     after_cursor = None
-
-    #     try:
-    #         if not os.path.exists(file_path):
-    #             with open(file_path, 'w', encoding='utf-8') as f:
-    #                 f.write('[]')
-
-    #         while has_next_page:
-    #             data = self.get_all_instances_of_entity('commits', after_cursor=after_cursor)
-    #             repository_id = data['repository']['id']
-    #             branch_id = data['repository']['defaultBranchRef']['id']
-    #             commits = data['repository']['defaultBranchRef']['target']['history']['nodes']
-    #             new_commits = []
-
-    #             for commit in commits:
-    #                 if commit['committedDate'] <= last_collected_date:
-    #                     has_next_page = False
-    #                     break
-
-    #                 modified_files = self.get_additional_commit_details(commit['oid'])
-    #                 comments_count = commit.get('comments', {}).get('totalCount', 0)
-    #                 parents = commit.get('parents', [])
-    #                 commit_data = {
-    #                     'repository_id': repository_id,
-    #                     'branch_id': branch_id,
-    #                     "hash": commit['oid'],
-    #                     "message": commit['message'],
-    #                     "changed_files_if_available": commit['changedFilesIfAvailable'],
-    #                     "additions": commit['additions'],
-    #                     "deletions": commit['deletions'],
-    #                     "comments_count": comments_count,
-    #                     "abbreviatedOid": commit['abbreviatedOid'],
-    #                     "committedDate": commit['committedDate'],
-    #                     "parents": parents['nodes'],
-    #                     "author_login": commit['author']['user']['login'] if commit['author']['user'] is not None else
-    #                     commit['committer']['user']['login'] if commit['committer']['user'] is not None else None,
-    #                     'author_id': commit['author']['user']['id'] if commit['author']['user'] is not None else
-    #                     commit['committer']['user']['id'] if commit['committer']['user'] is not None else None,
-    #                     'author_name': commit['author']['user']['name'] if commit['author']['user'] is not None else
-    #                     commit['committer']['user']['name'] if commit['committer']['user'] is not None else None,
-    #                     'author_email': commit['author']['user']['email'] if commit['author']['user'] is not None else
-    #                     commit['committer']['user']['email'] if commit['committer']['user'] is not None else None,
-    #                     "modified_files": modified_files
-    #                 }
-    #                 new_commits.append(commit_data)
-
-    #             if new_commits:
-    #                 os.remove(update_path)
-    #                 with open(update_path, 'a', encoding='utf-8') as f:
-    #                     f.write('[')
-    #                     for i, commit in enumerate(new_commits):
-    #                         json.dump(commit, f, ensure_ascii=False, indent=4)
-    #                         if i < len(new_commits) - 1:
-    #                             f.write(',')
-    #                     f.write(']')
-
-    #                 with open(file_path, 'r+', encoding='utf-8') as f:
-    #                     existing_data = json.load(f)
-    #                     existing_data.extend(new_commits)
-    #                     f.seek(0)
-    #                     json.dump(existing_data, f, ensure_ascii=False, indent=4)
-
-    #             pageInfo = data['repository']['defaultBranchRef']['target']['history']['pageInfo']
-    #             has_next_page = pageInfo['hasNextPage'] and has_next_page
-    #             after_cursor = pageInfo['endCursor']
-    #     except Exception as e:
-    #         logger.error(f"Error occurred while updating commits: {e}", exc_info=True)
-
     def update_commits(self, last_collected_date):
         logger.info("Updating commits since last collected date")
         file_path = os.path.join(self.base_dir, f'{self.repo_name}_commits.json')
@@ -394,7 +235,6 @@ class GitHubDataCollector:
 
             last_collected_date = datetime.fromisoformat(last_collected_date).strftime('%Y-%m-%d %H:%M:%S %z')
 
-            # Get new commits since last_collected_date
             git_log_output = self.run_git_command([
                 'log', '--since', last_collected_date,
                 '--pretty=format:%H%x09%an%x09%ae%x09%ad%x09%s', '--date=iso'
@@ -410,7 +250,6 @@ class GitHubDataCollector:
                 if len(parts) >= 5:
                     commit_hash, author_name, author_email, committed_date, message = parts[:5]
 
-                    # Check if the commit already exists
                     if any(commit['hash'] == commit_hash for commit in existing_commits):
                         continue
 
@@ -506,9 +345,6 @@ class GitHubDataCollector:
 
                 has_next_page = data['repository']['issues']['pageInfo']['hasNextPage']
                 after_cursor = data['repository']['issues']['pageInfo']['endCursor']
-
-            # with open(file_path, 'a', encoding='utf-8') as f:
-            #     f.write(']')
         except Exception as e:
             logger.error(f"Error occurred while collecting issues: {e}", exc_info=True)
         finally:
@@ -593,494 +429,6 @@ class GitHubDataCollector:
         except Exception as e:
             logger.error(f"Error occurred while updating issues: {e}", exc_info=True)
 
-
-    def collect_all_pull_requests(self):
-        logger.info('Collecting all pull requests')
-        file_path = f'{self.base_dir}/{self.repo_name}_pull_requests.json'
-        has_next_page = True
-        after_cursor = None
-
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write('[')
-
-        try:
-            first_write = True
-
-            while has_next_page:
-                data = self.get_all_instances_of_entity('pull_requests', after_cursor=after_cursor)
-                repository_id = data['repository']['id']
-                pull_requests = data['repository']['pullRequests']['nodes']
-
-                for pull_request in pull_requests:
-                    pull_request_data = {
-                        'repository_id': repository_id,
-                        "url": pull_request['url'],
-                        'author_login': pull_request['author']['login'] if pull_request['author'] else None,
-                        'author_name': pull_request['author']['name'] if pull_request['author'] else None,
-                        'author_email': pull_request['author']['email'] if pull_request['author'] else None,
-                        'author_id': pull_request['author']['id'] if pull_request['author'] else None,
-                        "number": pull_request['number'],
-                        "title": pull_request['title'],
-                        "body": pull_request['body'],
-                        'changed_files': pull_request['changedFiles'],
-                        "state": pull_request['state'],
-                        "closing_issues": pull_request['closingIssuesReferences']['nodes'] if pull_request['closingIssuesReferences'] else [],
-                        'commits': pull_request['commits']['nodes'] if pull_request['commits'] else [],
-                        "comments_count": pull_request['comments']['totalCount'] if pull_request['comments'] else 0,
-                        "created_at": pull_request['createdAt'],
-                        'files': pull_request['files']['nodes'] if pull_request['files'] else [],
-                        'id': pull_request['id'],
-                        "assignees": pull_request['assignees']['nodes'] if pull_request['assignees'] else [],
-                        "closed_at": pull_request['closedAt'],
-                        "participants": pull_request['participants']['nodes'] if pull_request['participants'] else [],
-                        "updated_at": pull_request['updatedAt']
-                    }
-
-                    with open(file_path, 'a', encoding='utf-8') as f:
-                        if not first_write:
-                            f.write(',')
-                        else:
-                            first_write = False
-                        json.dump(pull_request_data, f, ensure_ascii=False, indent=4)
-
-                has_next_page = data['repository']['pullRequests']['pageInfo']['hasNextPage']
-                after_cursor = data['repository']['pullRequests']['pageInfo']['endCursor']
-
-            # with open(file_path, 'a', encoding='utf-8') as f:
-            #     f.write(']')
-        except Exception as e:
-            logger.error(f"Error occurred while collecting pull requests: {e}", exc_info=True)
-        finally:
-            with open(file_path, 'a', encoding='utf-8') as f:
-                f.write(']')
-
-    def update_pull_requests(self, last_collected_date):
-        file_path = f'{self.base_dir}/{self.repo_name}_pull_requests.json'
-        update_path = f'{self.base_dir}/new_{self.repo_name}_pull_requests.json'
-        has_next_page = True
-        after_cursor = None
-
-        try:
-            if not os.path.exists(file_path):
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write('[]')
-
-            new_pull_requests = []
-
-            while has_next_page:
-                try:
-                    data = self.get_all_instances_of_entity('pull_requests', after_cursor=after_cursor)
-                    repository_id = data['repository']['id']
-                    pull_requests = data['repository']['pullRequests']['nodes']
-
-                    for pull_request in pull_requests:
-                        pull_request_created_at = pull_request['createdAt']
-                        if last_collected_date:
-                            if pull_request_created_at <= last_collected_date:
-                                has_next_page = False
-                                break
-
-                        pull_request_data = {
-                            'repository_id': repository_id,
-                            "url": pull_request['url'],
-                            'author_login': pull_request['author']['login'] if pull_request['author'] is not None else None,
-                            'author_name': pull_request['author']['name'] if pull_request['author'] is not None else None,
-                            'author_email': pull_request['author']['email'] if pull_request['author'] is not None else None,
-                            'author_id': pull_request['author']['id'] if pull_request['author'] is not None else None,
-                            "number": pull_request['number'],
-                            "title": pull_request['title'],
-                            "body": pull_request['body'],
-                            'changed_files': pull_request['changedFiles'],
-                            "state": pull_request['state'],
-                            "closing_issues": pull_request['closingIssuesReferences']['nodes'],
-                            'commits': pull_request['commits']['nodes'],
-                            "comments_count": pull_request['comments']['totalCount'],
-                            "created_at": pull_request['createdAt'],
-                            'files': pull_request['files']['nodes'],
-                            'id': pull_request['id'],
-                            "assignees": pull_request['assignees']['nodes'],
-                            "closed_at": pull_request['closedAt'],
-                            "participants": pull_request['participants']['nodes'],
-                            "updated_at": pull_request['updatedAt']
-                        }
-
-                        new_pull_requests.append(pull_request_data)
-
-                    pageInfo = data['repository']['pullRequests']['pageInfo']
-                    has_next_page = pageInfo['hasNextPage'] or has_next_page
-                    after_cursor = pageInfo['endCursor']
-                except Exception as e:
-                    logger.error(f"Error occurred while updating pull requests: {e}", exc_info=True)
-                    has_next_page = False
-
-            if new_pull_requests:
-                try:
-                    with open(update_path, 'w', encoding='utf-8') as f:
-                        json.dump(new_pull_requests, f, ensure_ascii=False, indent=4)
-
-                    try:
-                        temp_file_path = file_path + '.tmp'
-                        with open(file_path, 'r', encoding='utf-8') as f:
-                            existing_data = json.load(f)
-                        combined_data = existing_data + new_pull_requests
-                        with open(temp_file_path, 'w', encoding='utf-8') as f:
-                            json.dump(combined_data, f, ensure_ascii=False, indent=4)
-                        os.replace(temp_file_path, file_path)
-                    except Exception as e:
-                        logger.error(f"Error occurred while updating existing pull requests: {e}", exc_info=True)
-                        if os.path.exists(temp_file_path):
-                            os.remove(temp_file_path)
-                except Exception as e:
-                    logger.error(f"Error occurred while writing new pull requests to update file: {e}", exc_info=True)
-                    if os.path.exists(update_path):
-                        os.remove(update_path)
-        except Exception as e:
-            logger.error(f"Error occurred while updating pull requests: {e}", exc_info=True)    
-
-    def collect_all_releases(self):
-        logger.info('Collecting all releases')
-        file_path = f'{self.base_dir}/{self.repo_name}_releases.json'
-        has_next_page = True
-        after_cursor = None
-
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write('[')
-
-        try:
-            first_write = True
-
-            while has_next_page:
-                data = self.get_all_instances_of_entity('releases', after_cursor=after_cursor)
-                repository_id = data['repository']['id']
-                releases = data['repository']['releases']['nodes']
-
-                for release in releases:
-                    release_data = {
-                        'repository_id': repository_id,
-                        'author_id': release['author']['id'],
-                        'author_name': release['author']['name'],
-                        'author_email': release['author']['email'],
-                        'author_login': release['author']['login'],
-                        'is_latest': release['isLatest'],
-                        'created_at': release['createdAt'],
-                        "description": release['description'],
-                        "id": release['id'],
-                        'name': release['name'],
-                        "url": release['url'],
-                    }
-
-                    with open(file_path, 'a', encoding='utf-8') as f:
-                        if not first_write:
-                            f.write(',')
-                        else:
-                            first_write = False
-                        json.dump(release_data, f, ensure_ascii=False, indent=4)
-                has_next_page = data['repository']['releases']['pageInfo']['hasNextPage']
-                after_cursor = data['repository']['releases']['pageInfo']['endCursor']
-
-            # with open(file_path, 'a', encoding='utf-8') as f:
-            #     f.write(']')
-        except Exception as e:
-            logger.error(f"Error occurred while collecting releases: {e}", exc_info=True)
-        finally:
-            with open(file_path, 'a', encoding='utf-8') as f:
-                f.write(']')
-
-    def collect_all_projects(self):
-        logger.info('Collecting all projects')
-        file_path = f'{self.base_dir}/{self.repo_name}_projects.json'
-        has_next_page = True
-        after_cursor = None
-
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write('[')
-
-        try:
-            first_write = True
-
-            while has_next_page:
-                data = self.get_all_instances_of_entity('projects', after_cursor=after_cursor)
-                repository_id = data['repository']['id']
-                projects = data['repository']['projects']['nodes']
-
-                for project in projects:
-                    project_data = {
-                        'repository_id': repository_id,
-                        'creator_id': project['creator']['id'],
-                        'creator_name': project['creator']['name'],
-                        'creator_email': project['creator']['email'],
-                        'creator_login': project['creator']['login'],
-                        "id": project['id'],
-                        'name': project['name'],
-                        'body': project['body'],
-                        'number': project['number'],
-                        'state': project['state'],
-                        'done_percentage': project['progress']['donePercentage'],
-                        'in_progress_percentage': project['progress']['inProgressPercentage'],
-                        'todo_percentage': project['progress']['todoPercentage'],
-                        'url': project['url'],
-                        'created_at': project['createdAt']
-                    }
-
-                    with open(file_path, 'a', encoding='utf-8') as f:
-                        if not first_write:
-                            f.write(',')
-                        else:
-                            first_write = False
-                        json.dump(project_data, f, ensure_ascii=False, indent=4)
-                has_next_page = data['repository']['projects']['pageInfo']['hasNextPage']
-                after_cursor = data['repository']['projects']['pageInfo']['endCursor']
-
-            # with open(file_path, 'a', encoding='utf-8') as f:
-            #     f.write(']')
-        except Exception as e:
-            logger.error(f"Error occurred while collecting projects: {e}", exc_info=True)
-        finally:
-            with open(file_path, 'a', encoding='utf-8') as f:
-                f.write(']')
-
-    def collect_all_forks(self):
-        logger.info('Collecting all forks')
-        file_path = f'{self.base_dir}/{self.repo_name}_forks.json'
-        has_next_page = True
-        after_cursor = None
-
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write('[')
-
-        try:
-            first_write = True
-
-            while has_next_page:
-                data = self.get_all_instances_of_entity('forks', after_cursor=after_cursor)
-                repository_id = data['repository']['id']
-                forks = data['repository']['forks']['nodes']
-
-                for fork in forks:
-                    fork_data = {
-                        'repository_id': repository_id,
-                        "id": fork['id'],
-                        'name': fork['name'],
-                        'url': fork['url'],
-                    }
-
-                    with open(file_path, 'a', encoding='utf-8') as f:
-                        if not first_write:
-                            f.write(',')
-                        else:
-                            first_write = False
-                        json.dump(fork_data, f, ensure_ascii=False, indent=4)
-                has_next_page = data['repository']['forks']['pageInfo']['hasNextPage']
-                after_cursor = data['repository']['forks']['pageInfo']['endCursor']
-
-            # with open(file_path, 'a', encoding='utf-8') as f:
-            #     f.write(']')
-        except Exception as e:
-            logger.error(f"Error occurred while collecting forks: {e}", exc_info=True)
-        finally:
-            with open(file_path, 'a', encoding='utf-8') as f:
-                f.write(']')
-
-    def collect_all_languages(self):
-        logger.info('Collecting all languages')
-        file_path = f'{self.base_dir}/{self.repo_name}_languages.json'
-        has_next_page = True
-        after_cursor = None
-
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write('[')
-
-        try:
-            first_write = True
-
-            while has_next_page:
-                data = self.get_all_instances_of_entity('languages', after_cursor=after_cursor)
-                repository_id = data['repository']['id']
-                languages = data['repository']['languages']['nodes']
-
-                for language in languages:
-                    language_data = {
-                        'repository_id': repository_id,
-                        "id": language['id'],
-                        'name': language['name'],
-                        'color': language['color'],
-                    }
-
-                    with open(file_path, 'a', encoding='utf-8') as f:
-                        if not first_write:
-                            f.write(',')
-                        else:
-                            first_write = False
-                        json.dump(language_data, f, ensure_ascii=False, indent=4)
-                has_next_page = data['repository']['languages']['pageInfo']['hasNextPage']
-                after_cursor = data['repository']['languages']['pageInfo']['endCursor']
-
-            # with open(file_path, 'a', encoding='utf-8') as f:
-            #     f.write(']')
-        except Exception as e:
-            logger.error(f"Error occurred while collecting languages: {e}", exc_info=True)
-        finally:
-            with open(file_path, 'a', encoding='utf-8') as f:
-                f.write(']')
-
-    def update_releases(self, last_collected_date):
-        file_path = f'{self.base_dir}/{self.repo_name}_releases.json'
-        update_path = f'{self.base_dir}/new_{self.repo_name}_releases.json'
-        has_next_page = True
-        after_cursor = None
-
-        try:
-            if not os.path.exists(file_path):
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write('[]')
-
-            new_releases = []
-
-            while has_next_page:
-                try:
-                    data = self.get_all_instances_of_entity('releases', after_cursor=after_cursor)
-                    repository_id = data['repository']['id']
-                    releases = data['repository']['releases']['nodes']
-
-                    for release in releases:
-                        release_created_at = release['createdAt']
-                        if release_created_at <= last_collected_date:
-                            has_next_page = False
-                            break
-
-                        release_data = {
-                            'repository_id': repository_id,
-                            "url": release['url'],
-                            'author_login': release['author']['login'],
-                            'author_name': release['author']['name'],
-                            'author_email': release['author']['email'],
-                            'author_id': release['author']['id'],
-                            "number": release['number'],
-                            "title": release['title'],
-                            "body": release['body'],
-                            'changed_files': release['changedFiles'],
-                            "state": release['state'],
-                            "closing_issues": release['closingIssuesReferences']['nodes'],
-                            'commits': release['commits']['nodes'],
-                            "comments_count": release['comments']['totalCount'],
-                            "created_at": release['createdAt'],
-                            'files': release['files']['nodes'],
-                            'id': release['id'],
-                            "assignees": release['assignees']['nodes'],
-                            "closed_at": release['closedAt'],
-                            "participants": release['participants']['nodes'],
-                            "updated_at": release['updatedAt']
-                        }
-
-                        new_releases.append(release_data)
-
-                    pageInfo = data['repository']['releases']['pageInfo']
-                    has_next_page = pageInfo['hasNextPage'] or has_next_page
-                    after_cursor = pageInfo['endCursor']
-                except Exception as e:
-                    logger.error(f"Error occurred while updating releases: {e}", exc_info=True)
-                    has_next_page = False
-
-            if new_releases:
-                try:
-                    with open(update_path, 'w', encoding='utf-8') as f:
-                        json.dump(new_releases, f, ensure_ascii=False, indent=4)
-
-                    try:
-                        temp_file_path = file_path + '.tmp'
-                        with open(file_path, 'r', encoding='utf-8') as f:
-                            existing_data = json.load(f)
-                        combined_data = existing_data + new_releases
-                        with open(temp_file_path, 'w', encoding='utf-8') as f:
-                            json.dump(combined_data, f, ensure_ascii=False, indent=4)
-                        os.replace(temp_file_path, file_path)
-                    except Exception as e:
-                        logger.error(f"Error occurred while updating existing releases: {e}", exc_info=True)
-                        if os.path.exists(temp_file_path):
-                            os.remove(temp_file_path)
-                except Exception as e:
-                    logger.error(f"Error occurred while writing new releases to update file: {e}", exc_info=True)
-                    if os.path.exists(update_path):
-                        os.remove(update_path)
-        except Exception as e:
-            logger.error(f"Error occurred while updating releases: {e}", exc_info=True)
-
-    def update_projects(self, last_collected_date):
-        file_path = f'{self.base_dir}/{self.repo_name}_projects.json'
-        update_path = f'{self.base_dir}/new_{self.repo_name}_projects.json'
-        has_next_page = True
-        after_cursor = None
-
-        try:
-            if not os.path.exists(file_path):
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write('[]')
-
-            new_projects = []
-
-            while has_next_page:
-                try:
-                    data = self.get_all_instances_of_entity('projects', after_cursor=after_cursor)
-                    repository_id = data['repository']['id']
-                    projects = data['repository']['projects']['nodes']
-
-                    for project in projects:
-                        project_created_at = project['createdAt']
-                        if project_created_at <= last_collected_date:
-                            has_next_page = False
-                            break
-
-                        project_data = {
-                            'repository_id': repository_id,
-                            'creator_id': project['creator']['id'],
-                            'creator_name': project['creator']['name'],
-                            'creator_email': project['creator']['email'],
-                            'creator_login': project['creator']['login'],
-                            "id": project['id'],
-                            'name': project['name'],
-                            'body': project['body'],
-                            'number': project['number'],
-                            'state': project['state'],
-                            'done_percentage': project['progress']['donePercentage'],
-                            'in_progress_percentage': project['progress']['inProgressPercentage'],
-                            'todo_percentage': project['progress']['todoPercentage'],
-                            'url': project['url'],
-                            'created_at': project['createdAt']
-                        }
-
-                        new_projects.append(project_data)
-
-                    pageInfo = data['repository']['projects']['pageInfo']
-                    has_next_page = pageInfo['hasNextPage'] or has_next_page
-                    after_cursor = pageInfo['endCursor']
-                except Exception as e:
-                    logger.error(f"Error occurred while updating projects: {e}", exc_info=True)
-                    has_next_page = False
-
-            if new_projects:
-                try:
-                    with open(update_path, 'w', encoding='utf-8') as f:
-                        json.dump(new_projects, f, ensure_ascii=False, indent=4)
-
-                    try:
-                        temp_file_path = file_path + '.tmp'
-                        with open(file_path, 'r', encoding='utf-8') as f:
-                            existing_data = json.load(f)
-                        combined_data = existing_data + new_projects
-                        with open(temp_file_path, 'w', encoding='utf-8') as f:
-                            json.dump(combined_data, f, ensure_ascii=False, indent=4)
-                        os.replace(temp_file_path, file_path)
-                    except Exception as e:
-                        logger.error(f"Error occurred while updating existing projects: {e}", exc_info=True)
-                        if os.path.exists(temp_file_path):
-                            os.remove(temp_file_path)
-                except Exception as e:
-                    logger.error(f"Error occurred while writing new projects to update file: {e}", exc_info=True)
-                    if os.path.exists(update_path):
-                        os.remove(update_path)
-        except Exception as e:
-            logger.error(f"Error occurred while updating projects: {e}", exc_info=True)
-
     def collect_all_collaborators(self):
         logger.info('Collecting all collaborators')
         file_path = f'{self.base_dir}/{self.repo_name}_collaborators.json'
@@ -1128,103 +476,37 @@ class GitHubDataCollector:
             with open(file_path, 'a', encoding='utf-8') as f:
                 f.write(']')
 
-
-
     def collect_data(self):
         logger.info("Collecting repository data")
-        first_run = False
 
         logger.info("Collecting COMMIT data")
-        logger.info("Error in line 1")
         commit_path = f'{self.base_dir}/{self.repo_name}_commits.json'
         commits = []
         if os.path.exists(commit_path):
-            logger.info("Error in line 2")
             with open(commit_path, 'r', encoding='utf-8') as f:
                 try:
-                    logger.info("Error in line 3")
                     commits = json.load(f)
-                # except json.JSONDecodeError:
                 except Exception as e:
-                    logger.info("Error in line 4")
                     logger.error(f"Exception occurred: {e}")
                     commits = []
-        logger.info("Error in line 5")
         if len(commits) != 0:
-            logger.info("Error in line 6")
             last_collected_date = max(commit['committedDate'] for commit in commits)
         else:
-            logger.info("Error in line 7")
             last_collected_date = None
         if last_collected_date:
-            logger.info("Error in line 8")
             self.update_commits(last_collected_date)
         else:
-            logger.info("Error in line 9")
             self.collect_all_commits()
-            first_run = True
 
         logger.info("Collecting REPOSITORY data")
         repository_path = f'{self.base_dir}/{self.repo_name}_repositories.json'
         if not os.path.exists(repository_path):
-            # os.remove(repository_path)
             self.get_repository_data()
 
         logger.info("Collecting COLLABORATOR data")
         collaborator_path = f'{self.base_dir}/{self.repo_name}_collaborators.json'
         if not os.path.exists(collaborator_path):
-            # os.remove(collaborator_path)
             self.collect_all_collaborators()
-
-        logger.info("Collecting RELEASE data")
-        release_path = f'{self.base_dir}/{self.repo_name}_releases.json'
-        releases = []
-        if os.path.exists(release_path):
-            with open(release_path, 'r', encoding='utf-8') as f:
-                try:
-                    releases = json.load(f)
-                except json.JSONDecodeError:
-                    releases = []
-        if len(releases) != 0:
-            last_collected_date = max(release['created_at'] for release in releases)
-        else:
-            last_collected_date = None
-        if last_collected_date:
-            self.update_releases(last_collected_date)
-        else:
-            self.collect_all_releases()
-            first_run = True
-
-        logger.info("Collecting PROGRAMMING LANGUAGE data")
-        language_path = f'{self.base_dir}/{self.repo_name}_languages.json'
-        if not os.path.exists(language_path):
-            # os.remove(language_path)
-            self.collect_all_languages()
-
-        logger.info("Collecting FORK data")
-        fork_path = f'{self.base_dir}/{self.repo_name}_forks.json'
-        if not os.path.exists(fork_path):
-            # os.remove(fork_path)
-            self.collect_all_forks()
-
-        logger.info("Collecting PROJECT data")
-        project_path = f'{self.base_dir}/{self.repo_name}_projects.json'
-        projects = []
-        if os.path.exists(project_path):
-            with open(project_path, 'r', encoding='utf-8') as f:
-                try:
-                    projects = json.load(f)
-                except json.JSONDecodeError:
-                    projects = []
-        if len(projects) != 0:
-            last_collected_date = max(project['created_at'] for project in projects)
-        else:
-            last_collected_date = None
-        if last_collected_date:
-            self.update_projects(last_collected_date)
-        else:
-            self.collect_all_projects()
-            first_run = True
 
         logger.info("Collecting ISSUE data")
         issue_path = f'{self.base_dir}/{self.repo_name}_issues.json'
@@ -1243,26 +525,5 @@ class GitHubDataCollector:
             self.update_issues(last_collected_date)
         else:
             self.collect_all_issues()
-            first_run = True
-
-        logger.info("Collecting PULL REQUEST data")
-        pull_request_path = f'{self.base_dir}/{self.repo_name}_pull_requests.json'
-        pull_requests = []
-        if os.path.exists(pull_request_path):
-            with open(pull_request_path, 'r', encoding='utf-8') as f:
-                try:
-                    pull_requests = json.load(f)
-                except json.JSONDecodeError:
-                    pull_requests = []
-            if len(pull_requests) != 0:
-                last_collected_date = max(pull_request['created_at'] for pull_request in pull_requests)
-            else:
-                last_collected_date = None
-            # if last_collected_date:
-            self.update_pull_requests(last_collected_date)
-        else:
-            self.collect_all_pull_requests()
-            first_run = True
 
         print("Data collection complete")
-        return first_run

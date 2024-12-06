@@ -1,0 +1,567 @@
+Participant,Occupation,Experience,Task,Question,Answer,Query,Results,Is_Correct
+1,Master Student,1-3,1,"what are the bugs introduced within this commit ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04""","The commit with the hash ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"" introduced the following issues:
+
+Issue ID: 87, Title: ""Failing mapping for type issues with listProjectValidationIssues()"", URL: https://github.com/kontent-ai/management-sdk-js/issues/87
+
+Issue ID: 96, Title: ""Add support for limiting Workflows to Collections"", URL: https://github.com/kontent-ai/management-sdk-js/issues/96","cypher
+MATCH (c:Commit {hash: 'ed06430098b0b9e4ffc6b9799ce22f33eb1bed04'})-[:introduced]->(i:Issue)
+RETURN i.id AS issueId, i.title AS issueTitle, i.url AS issueUrl","[{""issueId"": 87, ""issueTitle"": ""\""Failing mapping for type issues with listProjectValidationIssues()\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/87""}, {""issueId"": 96, ""issueTitle"": ""\""Add support for limiting Workflows to Collections\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/96""}]",TRUE
+1,Master Student,1-3,2,Search for the buggy commit(s) within this timeframe: 8/1/2022 and write me your answer as a list,"Here is a list of buggy commits introduced within the timeframe starting from August 1, 2022:
+
+Commit Hash: 2f651cc7e6b704ee5d1b2866c3c81f9dd62b8b24
+
+Issue ID: 81
+Issue Title: ""Add support for the new async project validation endpoints""
+Issue URL: Link
+Commit Hash: ed06430098b0b9e4ffc6b9799ce22f33eb1bed04
+
+Issue ID: 87
+Issue Title: ""Failing mapping for type issues with listProjectValidationIssues()""
+Issue URL: Link
+Commit Hash: ed06430098b0b9e4ffc6b9799ce22f33eb1bed04
+
+Issue ID: 96
+Issue Title: ""Add support for limiting Workflows to Collections""
+Issue URL: Link
+Commit Hash: eb8a53cd419b265fe74f89ec77f37b39dea76773
+
+Issue ID: 116
+Issue Title: ""Update workflow response model""
+Issue URL: Link
+Commit Hash: d765d45e638c03a94e58e87721752c7a26bf9c6f
+
+Issue ID: 124
+Issue Title: ""Add method to managementClient to retrieve asset using codename""
+Issue URL: Link
+Commit Hash: 04ff3b4ef3362591a068e310880a4de051c8c918
+
+Issue ID: 117
+Issue Title: ""External id for options in multiple-options elements""
+Issue URL: Link
+Commit Hash: e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e
+
+Issue ID: 146
+Issue Title: ""Add support for move operation for patch of content types and taxonomies""
+Issue URL: Link
+Commit Hash: 788779bf1d9136b9135b58943836b1efca38eb1a
+
+Issue ID: 113
+Issue Title: ""ITaxonomyElementData is missing name property""
+Issue URL: Link
+Commit Hash: 6f8c7a5abcdc5fc334c7b2514f66ec7c951f5db7
+
+Issue ID: 95
+Issue Title: ""Add support for Preview configuration""
+Issue URL: Link
+Commit Hash: 1cf2e4cb3567d862c8862f9d854156185d5e28f2
+
+Issue ID: 139
+Issue Title: ""Add custom headers to webhooks""
+Issue URL: Link","cypher
+MATCH (c:Commit)-[:introduced]->(i:Issue)
+WHERE c.committedDate >= ""2022-08-01T00:00:00Z""
+RETURN c.hash AS commitHash, i.id AS issueId, i.title AS issueTitle, i.url AS issueUrl
+ORDER BY c.committedDate","[{""commitHash"": ""2f651cc7e6b704ee5d1b2866c3c81f9dd62b8b24"", ""issueId"": 81, ""issueTitle"": ""\""Add support for the new async project validation endpoints\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/81""}, {""commitHash"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""issueId"": 87, ""issueTitle"": ""\""Failing mapping for type issues with listProjectValidationIssues()\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/87""}, {""commitHash"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""issueId"": 96, ""issueTitle"": ""\""Add support for limiting Workflows to Collections\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/96""}, {""commitHash"": ""eb8a53cd419b265fe74f89ec77f37b39dea76773"", ""issueId"": 116, ""issueTitle"": ""\""Update workflow response model\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/116""}, {""commitHash"": ""d765d45e638c03a94e58e87721752c7a26bf9c6f"", ""issueId"": 124, ""issueTitle"": ""\""Add method to managementClient to retrieve asset using codename \"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/124""}, {""commitHash"": ""04ff3b4ef3362591a068e310880a4de051c8c918"", ""issueId"": 117, ""issueTitle"": ""\""External id for options in multiple-options elements\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/117""}, {""commitHash"": ""e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e"", ""issueId"": 146, ""issueTitle"": ""\""Add support for move operation for patch of content types and taxonomies\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/146""}, {""commitHash"": ""788779bf1d9136b9135b58943836b1efca38eb1a"", ""issueId"": 113, ""issueTitle"": ""\""ITaxonomyElementData is missing name property\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/113""}, {""commitHash"": ""6f8c7a5abcdc5fc334c7b2514f66ec7c951f5db7"", ""issueId"": 95, ""issueTitle"": ""\""Add support for Preview configuration\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/95""}, {""commitHash"": ""1cf2e4cb3567d862c8862f9d854156185d5e28f2"", ""issueId"": 139, ""issueTitle"": ""\""Add custom headers to webhooks\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/139""}]",TRUE
+1,Master Student,1-3,3,Which files in the codebase have been affected by the highest number of bugs?,"The file in the codebase that has been affected by the highest number of bugs is ""management-client.class.ts"" with 11 bugs.","cypher
+MATCH (i:Issue)-[:impacted]->(f:File)
+RETURN f.name AS file, COUNT(i) AS bug_count
+ORDER BY bug_count DESC
+LIMIT 10","[{""file"": ""management-client.class.ts"", ""bug_count"": 11}, {""file"": ""imanagement-client.interface.ts"", ""bug_count"": 9}, {""file"": ""content-management-query-service.class.ts"", ""bug_count"": 5}, {""file"": ""content-type-element.models.ts"", ""bug_count"": 5}, {""file"": ""content-type-elements.builder.ts"", ""bug_count"": 3}, {""file"": ""modify-content-type.spec.ts"", ""bug_count"": 3}, {""file"": ""identifiers.ts"", ""bug_count"": 3}, {""file"": ""project-mapper.ts"", ""bug_count"": 3}, {""file"": ""add-content-type.spec.ts"", ""bug_count"": 3}, {""file"": ""management-query-service.class.ts"", ""bug_count"": 3}]",TRUE
+1,Master Student,1-3,4,What commit that fixed the bug 116?,"The commit that fixed the bug 116 has the ID '9a5d16178c2f844b2ae9bb85d8e17502fce7590a' and the commit message is ""feat: adds scheduled_step property to workflow (fixes https://github.com/kontent-ai/management-sdk-js/issues/116)"".","cypher
+MATCH (c:Commit)-[:fixed]->(i:Issue {id: 116})
+RETURN c.id AS commitId, c.message AS commitMessage","[{""commitId"": ""9a5d16178c2f844b2ae9bb85d8e17502fce7590a"", ""commitMessage"": ""\""feat: adds scheduled_step property to workflow (fixes https://github.com/kontent-ai/management-sdk-js/issues/116)\""""}]",TRUE
+1,Master Student,1-3,5,which commits that fixed a bug but also introduced a new bug?,"The commits that fixed a bug but also introduced a new bug are:
+
+Commit ID: d765d45e638c03a94e58e87721752c7a26bf9c6f with the message ""feat: Add spaces support (#105)"". It fixed issue 96 and introduced issue 124.
+
+Commit ID: ed06430098b0b9e4ffc6b9799ce22f33eb1bed04 with the message ""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)"". It fixed issue 81 and introduced issues 87 and 96.
+
+Commit ID: 29319246bde19dc841e49f343b8e2c31bbf88e86 with the message ""feat: Implements new workflow endpoints (https://github.com/Kentico/kontent-management-sdk-js/issues/74)"". It fixed issue 74 and introduced issue 78.
+
+Commit ID: d8f3f21419050a7335d2fd4e812ac02d7c13a24f with the message ""feat: adds support for taxonomy elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/71)"". It fixed issue 71 and introduced issue 74.
+
+Commit ID: 9e22f6e4167bbe75199f1e7228d79c70ff98bc6c with the message ""feat: adds support for asset rendition endpoints (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/68)"". It fixed issue 68 and introduced issue 71.
+
+Commit ID: 01f7c8225ac318b41a6d40b9acc98bb6733f34e9 with the message ""feat: adds types support for content type elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/46)"". It fixed issue 46 and introduced issues 48, 83, and 118.
+
+Commit ID: d54a0b8ab94d411056bccb194a87fcd19bf86592 with the message ""feat: adds support for uploading assets & binary files from url (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/18), adds automatic mime type detection support"". It fixed issue 18 and introduced issues 82 and 122.
+
+Commit ID: 022e2679864fcce6dde36f2da34a48f98198196f with the message ""feat: adds missing type properties to content item contract (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/12)"". It fixed issue 12 and introduced issue 26.","cypher
+MATCH (c:Commit)-[:fixed]->(fixedIssue:Issue), (c)-[:introduced]->(introducedIssue:Issue)
+RETURN c.id AS commitId, c.message AS commitMessage, 
+ COLLECT(DISTINCT fixedIssue.id) AS fixedIssues, 
+ COLLECT(DISTINCT introducedIssue.id) AS introducedIssues","[{""commitId"": ""d765d45e638c03a94e58e87721752c7a26bf9c6f"", ""commitMessage"": ""\""feat: Add spaces support (#105)\"""", ""fixedIssues"": [96], ""introducedIssues"": [124]}, {""commitId"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""commitMessage"": ""\""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)\"""", ""fixedIssues"": [81], ""introducedIssues"": [87, 96]}, {""commitId"": ""29319246bde19dc841e49f343b8e2c31bbf88e86"", ""commitMessage"": ""\""feat: Implements new workflow endpoints (https://github.com/Kentico/kontent-management-sdk-js/issues/74)\"""", ""fixedIssues"": [74], ""introducedIssues"": [78]}, {""commitId"": ""d8f3f21419050a7335d2fd4e812ac02d7c13a24f"", ""commitMessage"": ""\""feat: adds support for taxonomy elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/71)\"""", ""fixedIssues"": [71], ""introducedIssues"": [74]}, {""commitId"": ""9e22f6e4167bbe75199f1e7228d79c70ff98bc6c"", ""commitMessage"": ""\""feat: adds support for asset rendition endpoints (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/68)\"""", ""fixedIssues"": [68], ""introducedIssues"": [71]}, {""commitId"": ""01f7c8225ac318b41a6d40b9acc98bb6733f34e9"", ""commitMessage"": ""\""feat: adds types support for content type elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/46)\"""", ""fixedIssues"": [46], ""introducedIssues"": [48, 83, 118]}, {""commitId"": ""d54a0b8ab94d411056bccb194a87fcd19bf86592"", ""commitMessage"": ""\""feat: adds support for uploading assets & binary files from url (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/18), adds automatic mime type detection support\"""", ""fixedIssues"": [18], ""introducedIssues"": [82, 122]}, {""commitId"": ""022e2679864fcce6dde36f2da34a48f98198196f"", ""commitMessage"": ""\""feat: adds missing type properties to content item contract (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/12)\"""", ""fixedIssues"": [12], ""introducedIssues"": [26]}]",TRUE
+1,Master Student,1-3,6,Search and Identify the number of commits within this period 10/1/2024,There were 0 commits on 10/1/2024. Can I help with anything else?,"cypher
+MATCH (c:Commit)
+WHERE c.committedDate =~ '2024-10-01T.*'
+RETURN COUNT(c) AS numberOfCommits","[{""numberOfCommits"": 0}]",TRUE
+1,Master Student,1-3,7,"Identify the developer(s) who have experience fixing bugs related to this file ""management-client.class.ts""","The developers who have experience fixing bugs related to the file ""management-client.class.ts"" are Richard Sustek, who fixed 6 bugs, Enngage, who fixed 4 bugs, and Nick Margaritondo, who fixed 1 bug.","cypher
+MATCH (u:User)-[:author]->(c:Commit)-[:fixed]->(i:Issue)-[:impacted]->(f:File {name: 'management-client.class.ts'})
+RETURN u.name AS developer, COUNT(DISTINCT c) AS bug_fixes
+ORDER BY bug_fixes DESC","[{""developer"": ""Richard Sustek"", ""bug_fixes"": 6}, {""developer"": ""Enngage"", ""bug_fixes"": 4}, {""developer"": ""Nick Margaritondo"", ""bug_fixes"": 1}]",TRUE
+1,Master Student,1-3,8,who are the developer(s) that have the highest number of unresolved bugs?,"I don't know who the developers with the highest number of unresolved bugs are, as the context provided does not include the necessary information. Can I help with anything else?","cypher
+MATCH (u:User)-[:creates]->(i:Issue)
+WHERE i.state <> 'closed'
+RETURN u.login AS developer, COUNT(i) AS unresolved_bugs
+ORDER BY unresolved_bugs DESC
+LIMIT 10",[],FALSE
+1,Master Student,1-3,9,"what are the details about the changes that occurred on this file ""identifiers.ts""?","The file ""identifiers.ts"" has undergone several changes over time. Here are the details of the changes:
+
+On November 1, 2023, a commit was made with the message: ""feat: Adds support for fetching assets by codename (fixes https://github.com/kontent-ai/management-sdk-js/issues/124)."" This change involved 5 additions and 3 deletions, and the change type was modified.
+
+On March 24, 2023, the commit message was: ""feat!: Renames all project related properties & types & queries to reflect new environment naming conventions, also removes deprecated validateProject query."" This modification included 4 additions and 4 deletions.
+
+On March 8, 2023, a commit titled ""lint fixes, uses proper response json for add space"" was made, with 1 addition and 1 deletion under the change type modified.
+
+Earlier on March 8, 2023, another commit was made: ""feat: Add spaces support (#105)."" This change involved 25 additions and no deletions.
+
+On August 8, 2022, a commit was made with the message: ""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)."" This modification included 17 additions and 1 deletion.
+
+On March 10, 2022, the commit ""feat: adds support for asset rendition endpoints (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/68)"" resulted in 19 additions and no deletions.
+
+On January 13, 2022, a commit titled ""feat: Adds support for view role"" was made, involving 29 additions and 43 deletions.
+
+Also on January 13, 2022, another commit was made: ""feat!: Adds support for Subscription API (subscription projects & users), updates client configuration by separating management & subscription endpoints (renames apiKey to managementApiKey)."" This resulted in 40 additions and no deletions.
+
+On June 7, 2021, a commit with the message ""feat: adds support for listing language variants by collection"" led to 26 additions and no deletions.
+
+On April 21, 2021, a commit titled ""feat: adds support for codename in workflow related endpoints & queries (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/35)"" resulted in 5 additions and 1 deletion.
+
+On October 10, 2019, a commit with the message ""fixes few webhook related typos"" included 3 additions and 3 deletions.
+
+Earlier on October 10, 2019, a commit titled ""Merge pull request #2 from michalpaukert/cmapi-missing-methods"" involved 18 additions and no deletions.
+
+Also on October 10, 2019, a commit with the message ""Add delete webhook endpoint support"" led to 18 additions and no deletions.
+
+These changes reflect various enhancements, fixes, and updates made to the ""identifiers.ts"" file over time","cypher
+MATCH (c:Commit)-[r:changed]->(f:File {name: 'identifiers.ts'})
+RETURN c.message AS commitMessage, c.committedDate AS committedDate, r.additions AS additions, r.deletions AS deletions, r.changeType AS changeType
+ORDER BY c.committedDate DESC","[{""commitMessage"": ""\""feat: Adds support for fetching assets by codename (fixes https://github.com/kontent-ai/management-sdk-js/issues/124)\"""", ""committedDate"": ""2023-11-01T09:18:55+01:00"", ""additions"": 5, ""deletions"": 3, ""changeType"": ""modified""}, {""commitMessage"": ""\""feat!: Renames all project related properties & types & queries to reflect new environment naming conventions, also removes deprecated validateProject query\"""", ""committedDate"": ""2023-03-24T08:39:41+01:00"", ""additions"": 4, ""deletions"": 4, ""changeType"": ""modified""}, {""commitMessage"": ""\""lint fixes, uses proper response json for add space\"""", ""committedDate"": ""2023-03-08T11:09:45+01:00"", ""additions"": 1, ""deletions"": 1, ""changeType"": ""modified""}, {""commitMessage"": ""\""feat: Add spaces support (#105)\"""", ""committedDate"": ""2023-03-08T04:04:56-06:00"", ""additions"": 25, ""deletions"": 0, ""changeType"": ""modified""}, {""commitMessage"": ""\""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)\"""", ""committedDate"": ""2022-08-08T10:44:45+02:00"", ""additions"": 17, ""deletions"": 1, ""changeType"": ""modified""}, {""commitMessage"": ""\""feat: adds support for asset rendition endpoints (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/68)\"""", ""committedDate"": ""2022-03-10T13:25:19+01:00"", ""additions"": 19, ""deletions"": 0, ""changeType"": ""modified""}, {""commitMessage"": ""\""feat: Adds support for view role\"""", ""committedDate"": ""2022-01-13T14:50:17+01:00"", ""additions"": 29, ""deletions"": 43, ""changeType"": ""modified""}, {""commitMessage"": ""\""feat!: Adds support for Subscription API (subscription projects & users), updates client configuration by separating management & subscription endpoints (renames apiKey to managementApiKey)\"""", ""committedDate"": ""2022-01-13T11:22:29+01:00"", ""additions"": 40, ""deletions"": 0, ""changeType"": ""modified""}, {""commitMessage"": ""\""feat: adds support for listing language variants by collection\"""", ""committedDate"": ""2021-06-07T14:30:30+02:00"", ""additions"": 26, ""deletions"": 0, ""changeType"": ""modified""}, {""commitMessage"": ""\""feat: adds support for codename in workflow related endpoints & queries (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/35)\"""", ""committedDate"": ""2021-04-21T12:56:48+02:00"", ""additions"": 5, ""deletions"": 1, ""changeType"": ""modified""}, {""commitMessage"": ""\""fixes few webhook related typos\"""", ""committedDate"": ""2019-10-10T11:13:44+02:00"", ""additions"": 3, ""deletions"": 3, ""changeType"": ""modified""}, {""commitMessage"": ""\""Merge pull request #2 from michalpaukert/cmapi-missing-methods\"""", ""committedDate"": ""2019-10-10T10:59:22+02:00"", ""additions"": 18, ""deletions"": 0, ""changeType"": ""modified""}, {""commitMessage"": ""\""Add delete webhook endpoint support\"""", ""committedDate"": ""2019-10-10T10:50:40+02:00"", ""additions"": 18, ""deletions"": 0, ""changeType"": ""modified""}]",TRUE
+1,Master Student,1-3,10,"Search and identify the commit information on this specific date ""29 Jan 2024""","On January 29, 2024, the following commits were made:
+
+Commit ID: a805c57ffe91153d9d7b2fe5c746dd5a53c41a09
+
+Message: ""release""
+Date: 2024-01-29T12:58:36+01:00
+Commit ID: a31bbe65412c0faa3cbc45be00009db0e56bf8e4
+
+Message: ""chore(release): 5.8.2""
+Date: 2024-01-29T12:57:09+01:00
+Commit ID: d0ac2298db0ffba36b6b90cec38aceedde3a3963
+
+Message: ""fix: Adds components to element models""
+Date: 2024-01-29T12:56:51+01:00
+Commit ID: 243999e7d745bac912270a991bbe7f219f417aa1
+
+Message: ""release""
+Date: 2024-01-29T12:07:29+01:00
+Commit ID: 8bf1a5c1b67208b948bd458bc9c0a264a53bdcea
+
+Message: ""chore(release): 5.8.1""
+Date: 2024-01-29T12:07:23+01:00
+Commit ID: 5d4868ebc149c1978e76134bada24ec8634183fb
+
+Message: ""fix: Fixes missing listQueryConfig when using toAllPromise""
+Date: 2024-01-29T12:06:58+01:00
+Commit ID: dc65a8f71e13e74fb11b846174d95e7a7422dc23
+
+Message: ""Uses singular naming for webhook types""
+Date: 2024-01-29T12:03:15+01:00
+Commit ID: 3afcb453cd1bdfd567b2019a223bf4f6b7691cdd
+
+Message: ""Uses stricter interface for identifiers""
+Date: 2024-01-29T12:02:12+01:00
+Commit ID: 1cf2e4cb3567d862c8862f9d854156185d5e28f2
+
+Message: ""fix: Updates webhook contract models (actions) (#134)""
+Date: 2024-01-29T04:59:12-06:00","cypher
+MATCH (c:Commit)
+WHERE c.committedDate =~ '2024-01-29T.*'
+RETURN c.id AS commitId, c.message AS message, c.committedDate AS date","[{""commitId"": ""a805c57ffe91153d9d7b2fe5c746dd5a53c41a09"", ""message"": ""\""release\"""", ""date"": ""2024-01-29T12:58:36+01:00""}, {""commitId"": ""a31bbe65412c0faa3cbc45be00009db0e56bf8e4"", ""message"": ""\""chore(release): 5.8.2\"""", ""date"": ""2024-01-29T12:57:09+01:00""}, {""commitId"": ""d0ac2298db0ffba36b6b90cec38aceedde3a3963"", ""message"": ""\""fix: Adds components to element models\"""", ""date"": ""2024-01-29T12:56:51+01:00""}, {""commitId"": ""243999e7d745bac912270a991bbe7f219f417aa1"", ""message"": ""\""release\"""", ""date"": ""2024-01-29T12:07:29+01:00""}, {""commitId"": ""8bf1a5c1b67208b948bd458bc9c0a264a53bdcea"", ""message"": ""\""chore(release): 5.8.1\"""", ""date"": ""2024-01-29T12:07:23+01:00""}, {""commitId"": ""5d4868ebc149c1978e76134bada24ec8634183fb"", ""message"": ""\""fix: Fixes missing listQueryConfig when using toAllPromise\"""", ""date"": ""2024-01-29T12:06:58+01:00""}, {""commitId"": ""dc65a8f71e13e74fb11b846174d95e7a7422dc23"", ""message"": ""\""Uses singular naming for webhook types\"""", ""date"": ""2024-01-29T12:03:15+01:00""}, {""commitId"": ""3afcb453cd1bdfd567b2019a223bf4f6b7691cdd"", ""message"": ""\""Uses stricter interface for identifiers\"""", ""date"": ""2024-01-29T12:02:12+01:00""}, {""commitId"": ""1cf2e4cb3567d862c8862f9d854156185d5e28f2"", ""message"": ""\""fix: Updates webhook contract models (actions) (#134)\"""", ""date"": ""2024-01-29T04:59:12-06:00""}]",TRUE
+2,PhD Student,5+,1,What bug was created by this commit: d54a0b8ab94d411056bccb194a87fcd19bf86592,"The commit with the hash 'd54a0b8ab94d411056bccb194a87fcd19bf86592' introduced two issues:
+
+Issue titled ""uploadAssetFromUrl hangs indefinitely,"" which can be found at: https://github.com/kontent-ai/management-sdk-js/issues/82
+
+Issue titled ""Add asset codename,"" which can be found at: https://github.com/kontent-ai/management-sdk-js/issues/122","cypher
+MATCH (c:Commit {hash: 'd54a0b8ab94d411056bccb194a87fcd19bf86592'})-[:introduced]->(i:Issue)
+RETURN i.id AS issueId, i.title AS issueTitle, i.url AS issueUrl","[{""issueId"": 82, ""issueTitle"": ""\""uploadAssetFromUrl hangs indefinitely\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/82""}, {""issueId"": 122, ""issueTitle"": ""\""Add asset codename\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/122""}]",TRUE
+2,PhD Student,5+,2,List the buggy commits in March 2023,"Here are the buggy commits introduced in March 2023:
+
+Commit Hash: e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e
+
+Issue Title: ""Add support for move operation for patch of content types and taxonomies""
+Issue URL: View Issue
+Commit Hash: 04ff3b4ef3362591a068e310880a4de051c8c918
+
+Issue Title: ""External id for options in multiple-options elements""
+Issue URL: View Issue
+Commit Hash: d765d45e638c03a94e58e87721752c7a26bf9c6f
+
+Issue Title: ""Add method to managementClient to retrieve asset using codename""
+Issue URL: View Issue
+Commit Hash: eb8a53cd419b265fe74f89ec77f37b39dea76773
+
+Issue Title: ""Update workflow response model""
+Issue URL: View Issue","cypher
+MATCH (c:Commit)-[:introduced]->(i:Issue)
+WHERE c.committedDate =~ '2023-03-.*'
+RETURN c.hash AS commitHash, i.title AS issueTitle, i.url AS issueUrl","[{""commitHash"": ""e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e"", ""issueTitle"": ""\""Add support for move operation for patch of content types and taxonomies\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/146""}, {""commitHash"": ""04ff3b4ef3362591a068e310880a4de051c8c918"", ""issueTitle"": ""\""External id for options in multiple-options elements\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/117""}, {""commitHash"": ""d765d45e638c03a94e58e87721752c7a26bf9c6f"", ""issueTitle"": ""\""Add method to managementClient to retrieve asset using codename \"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/124""}, {""commitHash"": ""eb8a53cd419b265fe74f89ec77f37b39dea76773"", ""issueTitle"": ""\""Update workflow response model\"""", ""issueUrl"": ""https://github.com/kontent-ai/management-sdk-js/issues/116""}]",TRUE
+2,PhD Student,5+,3,What files are most affected by bugs,"The files most affected by bugs are:
+
+management-client.class.ts with 11 bugs.
+imanagement-client.interface.ts with 9 bugs.
+content-management-query-service.class.ts with 5 bugs.
+content-type-element.models.ts with 5 bugs.
+content-type-elements.builder.ts with 3 bugs.
+modify-content-type.spec.ts with 3 bugs.
+identifiers.ts with 3 bugs.
+project-mapper.ts with 3 bugs.
+add-content-type.spec.ts with 3 bugs.
+management-query-service.class.ts with 3 bugs.","cypher
+MATCH (i:Issue)-[:impacted]->(f:File)
+RETURN f.name AS file, COUNT(i) AS bug_count
+ORDER BY bug_count DESC
+LIMIT 10","[{""file"": ""management-client.class.ts"", ""bug_count"": 11}, {""file"": ""imanagement-client.interface.ts"", ""bug_count"": 9}, {""file"": ""content-management-query-service.class.ts"", ""bug_count"": 5}, {""file"": ""content-type-element.models.ts"", ""bug_count"": 5}, {""file"": ""content-type-elements.builder.ts"", ""bug_count"": 3}, {""file"": ""modify-content-type.spec.ts"", ""bug_count"": 3}, {""file"": ""identifiers.ts"", ""bug_count"": 3}, {""file"": ""project-mapper.ts"", ""bug_count"": 3}, {""file"": ""add-content-type.spec.ts"", ""bug_count"": 3}, {""file"": ""management-query-service.class.ts"", ""bug_count"": 3}]",TRUE
+2,PhD Student,5+,4,What commit fixed issue 85?,"The commit that fixed issue 85 has the ID ""59acd6dfa2af35165f40a52af1267edadf1dfbea"" and the commit message is ""feat: adds support for h5 & h6 in rich text elements (fixes https://github.com/kontent-ai/management-sdk-js/issues/85)"".","cypher
+MATCH (c:Commit)-[:fixed]->(i:Issue {number: 85})
+RETURN c.id AS commit_id, c.message AS commit_message","[{""commit_id"": ""59acd6dfa2af35165f40a52af1267edadf1dfbea"", ""commit_message"": ""\""feat: adds support for h5 & h6 in rich text elements (fixes https://github.com/kontent-ai/management-sdk-js/issues/85)\""""}]",TRUE
+2,PhD Student,5+,5,Which commits fixed a bug but also introduced new bugs?,"The following commits fixed a bug but also introduced new bugs:
+
+Commit ID 01f7c8225ac318b41a6d40b9acc98bb6733f34e9 with the message ""feat: adds types support for content type elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/46)"" fixed 1 issue and introduced 3 new issues.
+
+Commit ID d54a0b8ab94d411056bccb194a87fcd19bf86592 with the message ""feat: adds support for uploading assets & binary files from url (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/18), adds automatic mime type detection support"" fixed 1 issue and introduced 2 new issues.
+
+Commit ID ed06430098b0b9e4ffc6b9799ce22f33eb1bed04 with the message ""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)"" fixed 1 issue and introduced 2 new issues.","cypher
+MATCH (c:Commit)-[:fixed]->(fixedIssue:Issue), (c)-[:introduced]->(introducedIssue:Issue)
+RETURN c.id AS commitId, c.message AS commitMessage, COUNT(DISTINCT fixedIssue) AS fixedIssues, COUNT(DISTINCT introducedIssue) AS introducedIssues
+ORDER BY commitId","[{""commitId"": ""01f7c8225ac318b41a6d40b9acc98bb6733f34e9"", ""commitMessage"": ""\""feat: adds types support for content type elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/46)\"""", ""fixedIssues"": 1, ""introducedIssues"": 3}, {""commitId"": ""022e2679864fcce6dde36f2da34a48f98198196f"", ""commitMessage"": ""\""feat: adds missing type properties to content item contract (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/12)\"""", ""fixedIssues"": 1, ""introducedIssues"": 1}, {""commitId"": ""29319246bde19dc841e49f343b8e2c31bbf88e86"", ""commitMessage"": ""\""feat: Implements new workflow endpoints (https://github.com/Kentico/kontent-management-sdk-js/issues/74)\"""", ""fixedIssues"": 1, ""introducedIssues"": 1}, {""commitId"": ""9e22f6e4167bbe75199f1e7228d79c70ff98bc6c"", ""commitMessage"": ""\""feat: adds support for asset rendition endpoints (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/68)\"""", ""fixedIssues"": 1, ""introducedIssues"": 1}, {""commitId"": ""d54a0b8ab94d411056bccb194a87fcd19bf86592"", ""commitMessage"": ""\""feat: adds support for uploading assets & binary files from url (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/18), adds automatic mime type detection support\"""", ""fixedIssues"": 1, ""introducedIssues"": 2}, {""commitId"": ""d765d45e638c03a94e58e87721752c7a26bf9c6f"", ""commitMessage"": ""\""feat: Add spaces support (#105)\"""", ""fixedIssues"": 1, ""introducedIssues"": 1}, {""commitId"": ""d8f3f21419050a7335d2fd4e812ac02d7c13a24f"", ""commitMessage"": ""\""feat: adds support for taxonomy elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/71)\"""", ""fixedIssues"": 1, ""introducedIssues"": 1}, {""commitId"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""commitMessage"": ""\""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)\"""", ""fixedIssues"": 1, ""introducedIssues"": 2}]",TRUE
+2,PhD Student,5+,6,How many commits were created in August 2024?,There were 15 commits created in August 2024.,"cypher
+MATCH (c:Commit)
+WHERE c.committedDate >= ""2024-08-01T00:00:00Z"" AND c.committedDate <= ""2024-08-31T23:59:59Z""
+RETURN COUNT(c) AS numberOfCommits","[{""numberOfCommits"": 15}]",TRUE
+2,PhD Student,5+,7,Which devs fixed bugs related to this file imanagement-client.interface.ts?,"The developers who fixed bugs related to the file ""imanagement-client.interface.ts"" are Richard Sustek, who fixed 6 bugs, Enngage, who fixed 5 bugs, and Nick Margaritondo, who fixed 1 bug.","cypher
+MATCH (u:User)-[:author]->(c:Commit)-[:changed]->(f:File {name: 'imanagement-client.interface.ts'})
+MATCH (c)-[:fixed]->(i:Issue)
+RETURN u.name AS developer, COUNT(DISTINCT c) AS bug_fixes
+ORDER BY bug_fixes DESC","[{""developer"": ""Richard Sustek"", ""bug_fixes"": 6}, {""developer"": ""Enngage"", ""bug_fixes"": 5}, {""developer"": ""Nick Margaritondo"", ""bug_fixes"": 1}]",TRUE
+2,PhD Student,5+,8,Identify the developer(s) with the highest number of unresolved bugs.,I don't know. Can I help with anything else?,"cypher
+MATCH (u:User)-[:creates]->(i:Issue)
+WHERE i.state <> 'closed'
+RETURN u.login AS developer, COUNT(i) AS unresolved_bugs
+ORDER BY unresolved_bugs DESC
+LIMIT 1",[],FALSE
+2,PhD Student,5+,9,What changes happened in this file project-mapper.ts?,"The file project-mapper.ts has undergone several changes over time. Here are some of the notable changes:
+
+Commit Hash: e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e
+
+Message: ""feat!: Renames all project related properties & types & queries to reflect new environment naming conventions, also removes deprecated validateProject query""
+Author: Richard Sustek
+Date: 2023-03-24
+Commit Hash: 5e02276397191fcc43645977eb09a6ea01bf33e1
+
+Message: ""fix: Fixes mapping of type & variant issue types in new validation endpoint""
+Author: Richard Sustek
+Date: 2022-10-03
+Commit Hash: ed06430098b0b9e4ffc6b9799ce22f33eb1bed04
+
+Message: ""feat: Adds support for new validation endpoints""
+Author: Richard Sustek
+Date: 2022-08-08
+Commit Hash: c6b8fd07460f4d3ad1c62397d5cd8ed46dca18c3
+
+Message: ""rebranding""
+Author: Richard Sustek
+Date: 2022-07-14
+Commit Hash: 3b49ccf5b3dea4ec0c6b8299e7d99bc2904ca4ff
+
+Message: ""feat: adds environment to project information""
+Author: Enngage
+Date: 2021-07-30
+Commit Hash: 01b0d713911a8c784c927c1fb30a3ddf02b9310e
+
+Message: ""feat!: refactors library await from rjx (removes all observable related features), adds support for cancelling request via cancel tokens""
+Author: Enngage
+Date: 2021-05-26
+Commit Hash: c01804fa694e0be83b80a233edb78cd09f6c5f36
+
+Message: ""feat: exposes more mapping methods (e.g. mapping contentType instead of whole response)""
+Author: Enngage
+Date: 2020-01-06
+Commit Hash: 234f175865ea3dcf0e4852c91cbec19e1f2119e1
+
+Message: ""feat: adds support for project information endpoint""
+Author: Enngage
+Date: 2019-12-16
+These commits reflect a variety of updates, including feature additions, fixes, and rebranding efforts.","cypher
+MATCH (f:File {name: 'project-mapper.ts'})<-[:changed]-(c:Commit)<-[:author]-(u:User)
+RETURN c.hash AS commitHash, c.message AS commitMessage, u.name AS author, c.committedDate AS date, 
+ c.changed AS changeDetails
+ORDER BY c.committedDate DESC","[{""commitHash"": ""e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e"", ""commitMessage"": ""\""feat!: Renames all project related properties & types & queries to reflect new environment naming conventions, also removes deprecated validateProject query\"""", ""author"": ""Richard Sustek"", ""date"": ""2023-03-24T08:39:41+01:00"", ""changeDetails"": null}, {""commitHash"": ""5e02276397191fcc43645977eb09a6ea01bf33e1"", ""commitMessage"": ""\""fix: Fixes mapping of type & variant issue types in new validation endpoint (fixes https://github.com/kontent-ai/management-sdk-js/issues/87)\"""", ""author"": ""Richard Sustek"", ""date"": ""2022-10-03T12:26:07+02:00"", ""changeDetails"": null}, {""commitHash"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""commitMessage"": ""\""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)\"""", ""author"": ""Richard Sustek"", ""date"": ""2022-08-08T10:44:45+02:00"", ""changeDetails"": null}, {""commitHash"": ""c6b8fd07460f4d3ad1c62397d5cd8ed46dca18c3"", ""commitMessage"": ""\""rebranding\"""", ""author"": ""Richard Sustek"", ""date"": ""2022-07-14T15:07:10+02:00"", ""changeDetails"": null}, {""commitHash"": ""3b49ccf5b3dea4ec0c6b8299e7d99bc2904ca4ff"", ""commitMessage"": ""\""feat: adds environment to project information (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/49)\"""", ""author"": ""Enngage"", ""date"": ""2021-07-30T08:56:32+02:00"", ""changeDetails"": null}, {""commitHash"": ""01b0d713911a8c784c927c1fb30a3ddf02b9310e"", ""commitMessage"": ""\""feat!: refactors library await from rjx (removes all observable related features), adds support for cancelling request via cancel tokens\"""", ""author"": ""Enngage"", ""date"": ""2021-05-26T14:26:03+02:00"", ""changeDetails"": null}, {""commitHash"": ""c01804fa694e0be83b80a233edb78cd09f6c5f36"", ""commitMessage"": ""\""feat: exposes more mapping methods (e.g. mapping contentType instead of whole response)\"""", ""author"": ""Enngage"", ""date"": ""2020-01-06T14:52:44+01:00"", ""changeDetails"": null}, {""commitHash"": ""234f175865ea3dcf0e4852c91cbec19e1f2119e1"", ""commitMessage"": ""\""feat: adds support for project information endpoint\"""", ""author"": ""Enngage"", ""date"": ""2019-12-16T14:53:40+01:00"", ""changeDetails"": null}]",TRUE
+2,PhD Student,5+,10,Commit info on 3 Oct 2024,"On October 3, 2024, the following commits were made:
+
+Commit ID: 516b70b998e4f0ca388a300651aa10c8d2f312ea
+
+Message: ""Update sdk-info.generated.ts""
+Date: 2024-10-03T11:27:04+02:00
+Commit ID: 15bbde777f0625048bf34352fbfe6a260d275d6e
+
+Message: ""chore(release): 7.4.0""
+Date: 2024-10-03T11:26:57+02:00
+Commit ID: bd1b082368d5987a56e12cff6e57488fc4b83bf6
+
+Message: ""feat: adds display_timezone to ContentItemElement class. Fixes mapping of components in element""
+Date: 2024-10-03T11:26:39+02:00","cypher
+MATCH (c:Commit)
+WHERE c.committedDate =~ '2024-10-03.*'
+RETURN c.id AS commitId, c.message AS message, c.committedDate AS date","[{""commitId"": ""516b70b998e4f0ca388a300651aa10c8d2f312ea"", ""message"": ""\""Update sdk-info.generated.ts\"""", ""date"": ""2024-10-03T11:27:04+02:00""}, {""commitId"": ""15bbde777f0625048bf34352fbfe6a260d275d6e"", ""message"": ""\""chore(release): 7.4.0\"""", ""date"": ""2024-10-03T11:26:57+02:00""}, {""commitId"": ""bd1b082368d5987a56e12cff6e57488fc4b83bf6"", ""message"": ""\""feat: adds display_timezone to ContentItemElement class. Fixes mapping of components in element\"""", ""date"": ""2024-10-03T11:26:39+02:00""}]",TRUE
+3,Master Student,5+,1,what bug does commit d54a0b8ab94d411056bccb194a87fcd19bf86592 introduce?,"The commit with the hash d54a0b8ab94d411056bccb194a87fcd19bf86592 introduces the following issues:
+
+Issue Number: 82
+
+Title: ""uploadAssetFromUrl hangs indefinitely""
+URL: https://github.com/kontent-ai/management-sdk-js/issues/82
+Issue Number: 122
+
+Title: ""Add asset codename""
+URL: https://github.com/kontent-ai/management-sdk-js/issues/122",,[],TRUE
+3,Master Student,5+,2,can you give me a list of bugs in the first half of August 2022?,"Here is a list of issues introduced in the first half of August 2022:
+
+Issue Number: 81
+
+Title: ""Add support for the new async project validation endpoints""
+URL: https://github.com/kontent-ai/management-sdk-js/issues/81
+Issue Number: 87
+
+Title: ""Failing mapping for type issues with listProjectValidationIssues()""
+URL: https://github.com/kontent-ai/management-sdk-js/issues/87
+Issue Number: 96
+
+Title: ""Add support for limiting Workflows to Collections""
+URL: https://github.com/kontent-ai/management-sdk-js/issues/96","cypher
+MATCH (c:Commit)-[:introduced]->(i:Issue)
+WHERE c.committedDate >= ""2022-08-01T00:00:00Z"" AND c.committedDate <= ""2022-08-15T23:59:59Z""
+RETURN i.number AS issueNumber, i.title AS issueTitle, i.url AS issueURL
+ORDER BY i.number","[{""issueNumber"": 81, ""issueTitle"": ""\""Add support for the new async project validation endpoints\"""", ""issueURL"": ""https://github.com/kontent-ai/management-sdk-js/issues/81""}, {""issueNumber"": 87, ""issueTitle"": ""\""Failing mapping for type issues with listProjectValidationIssues()\"""", ""issueURL"": ""https://github.com/kontent-ai/management-sdk-js/issues/87""}, {""issueNumber"": 96, ""issueTitle"": ""\""Add support for limiting Workflows to Collections\"""", ""issueURL"": ""https://github.com/kontent-ai/management-sdk-js/issues/96""}]",TRUE
+3,Master Student,5+,3,give me a list of the top 3 most buggy files,"The top 3 most buggy files are:
+1. management-client.class.ts with 11 issues
+2. imanagement-client.interface.ts with 9 issues
+3. content-management-query-service.class.ts with 5 issues","cypher
+MATCH (i:Issue)-[:impacted]->(f:File)
+RETURN f.name AS file, COUNT(i) AS issue_count
+ORDER BY issue_count DESC
+LIMIT 3","[{""file"": ""management-client.class.ts"", ""issue_count"": 11}, {""file"": ""imanagement-client.interface.ts"", ""issue_count"": 9}, {""file"": ""content-management-query-service.class.ts"", ""issue_count"": 5}]",TRUE
+3,Master Student,5+,4,which commit solved bug 71 ?,"The commit that solved bug 71 is identified by the commit ID ""d8f3f21419050a7335d2fd4e812ac02d7c13a24f"" with the message: ""feat: adds support for taxonomy elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/71)"".","cypher
+MATCH (c:Commit)-[:fixed]->(i:Issue {number: 71})
+RETURN c.id AS commit_id, c.message AS commit_message","[{""commit_id"": ""d8f3f21419050a7335d2fd4e812ac02d7c13a24f"", ""commit_message"": ""\""feat: adds support for taxonomy elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/71)\""""}]",TRUE
+3,Master Student,5+,5,"can you check which commit introduced solved a bug, but also introduced a new bug?","Certainly! Here are the commits that fixed a bug but also introduced a new bug:
+
+Commit ID: d765d45e638c03a94e58e87721752c7a26bf9c6f fixed issue number 96 and introduced issue number 124.
+Commit ID: ed06430098b0b9e4ffc6b9799ce22f33eb1bed04 fixed issue number 81 and introduced issue numbers 87 and 96.
+Commit ID: 29319246bde19dc841e49f343b8e2c31bbf88e86 fixed issue number 74 and introduced issue number 78.
+Commit ID: d8f3f21419050a7335d2fd4e812ac02d7c13a24f fixed issue number 71 and introduced issue number 74.
+Commit ID: 9e22f6e4167bbe75199f1e7228d79c70ff98bc6c fixed issue number 68 and introduced issue number 71.
+Commit ID: 01f7c8225ac318b41a6d40b9acc98bb6733f34e9 fixed issue number 46 and introduced issue numbers 48, 83, and 118.
+Commit ID: d54a0b8ab94d411056bccb194a87fcd19bf86592 fixed issue number 18 and introduced issue numbers 82 and 122.
+Commit ID: 022e2679864fcce6dde36f2da34a48f98198196f fixed issue number 12 and introduced issue number 26.
+Each of these commits addressed an issue while also leading to the creation of new issues.","cypher
+MATCH (c:Commit)-[:fixed]->(fixedIssue:Issue), (c)-[:introduced]->(introducedIssue:Issue)
+RETURN c.id AS commitId, 
+ COLLECT(DISTINCT fixedIssue.number) AS fixedIssues, 
+ COLLECT(DISTINCT introducedIssue.number) AS introducedIssues","[{""commitId"": ""d765d45e638c03a94e58e87721752c7a26bf9c6f"", ""fixedIssues"": [96], ""introducedIssues"": [124]}, {""commitId"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""fixedIssues"": [81], ""introducedIssues"": [87, 96]}, {""commitId"": ""29319246bde19dc841e49f343b8e2c31bbf88e86"", ""fixedIssues"": [74], ""introducedIssues"": [78]}, {""commitId"": ""d8f3f21419050a7335d2fd4e812ac02d7c13a24f"", ""fixedIssues"": [71], ""introducedIssues"": [74]}, {""commitId"": ""9e22f6e4167bbe75199f1e7228d79c70ff98bc6c"", ""fixedIssues"": [68], ""introducedIssues"": [71]}, {""commitId"": ""01f7c8225ac318b41a6d40b9acc98bb6733f34e9"", ""fixedIssues"": [46], ""introducedIssues"": [48, 83, 118]}, {""commitId"": ""d54a0b8ab94d411056bccb194a87fcd19bf86592"", ""fixedIssues"": [18], ""introducedIssues"": [82, 122]}, {""commitId"": ""022e2679864fcce6dde36f2da34a48f98198196f"", ""fixedIssues"": [12], ""introducedIssues"": [26]}]",TRUE
+3,Master Student,5+,6,how many commits where introduced in october 2024?,"In October 2024, there were 10 commits introduced. Can I help with anything else?","cypher
+MATCH (c:Commit)
+WHERE c.committedDate =~ '2024-10-.*'
+RETURN COUNT(c) AS numberOfCommits","[{""numberOfCommits"": 10}]",TRUE
+3,Master Student,5+,7,which devs have more experience solving bugs for file imanagement-client.interface.ts?,"The developers with the most experience solving bugs for the file imanagement-client.interface.ts are Richard Sustek, with 6 bug fixes, and Enngage, with 3 bug fixes.","cypher
+MATCH (u:User)-[:author]->(c:Commit)-[:fixed]->(i:Issue)-[:impacted]->(f:File {name: 'imanagement-client.interface.ts'})
+RETURN u.name AS developer, COUNT(i) AS bug_fixes
+ORDER BY bug_fixes DESC","[{""developer"": ""Richard Sustek"", ""bug_fixes"": 6}, {""developer"": ""Enngage"", ""bug_fixes"": 3}]",TRUE
+3,Master Student,5+,8,tell me who has the highest number of unresolved bugs,"I don't know who has the highest number of unresolved bugs, can I help with anything else?","cypher
+MATCH (u:User)-[:creates]->(i:Issue {state: 'open'})
+RETURN u.login AS user, COUNT(i) AS unresolved_bugs
+ORDER BY unresolved_bugs DESC
+LIMIT 1",[],FALSE
+3,Master Student,5+,9,how many lines of code have changed last month in file project-mapper.ts?,No lines of code were changed last month in the file project-mapper.ts. Can I help with anything else?,"cypher
+MATCH (f:File {name: 'project-mapper.ts'})<-[:changed]-(c:Commit)
+WHERE c.committedDate =~ '2024-10-.*'
+RETURN SUM(c.additions + c.deletions) AS totalLinesChanged","[{""totalLinesChanged"": 0}]",TRUE
+3,Master Student,5+,10,which commits were created in january 29th 2024?,"On January 29th, 2024, the following commits were created:
+
+Commit ID: a805c57ffe91153d9d7b2fe5c746dd5a53c41a09 with the message: ""release"" at 12:58:36+01:00.
+Commit ID: a31bbe65412c0faa3cbc45be00009db0e56bf8e4 with the message: ""chore(release): 5.8.2"" at 12:57:09+01:00.
+Commit ID: d0ac2298db0ffba36b6b90cec38aceedde3a3963 with the message: ""fix: Adds components to element models"" at 12:56:51+01:00.
+Commit ID: 243999e7d745bac912270a991bbe7f219f417aa1 with the message: ""release"" at 12:07:29+01:00.
+Commit ID: 8bf1a5c1b67208b948bd458bc9c0a264a53bdcea with the message: ""chore(release): 5.8.1"" at 12:07:23+01:00.
+Commit ID: 5d4868ebc149c1978e76134bada24ec8634183fb with the message: ""fix: Fixes missing listQueryConfig when using toAllPromise"" at 12:06:58+01:00.
+Commit ID: dc65a8f71e13e74fb11b846174d95e7a7422dc23 with the message: ""Uses singular naming for webhook types"" at 12:03:15+01:00.
+Commit ID: 3afcb453cd1bdfd567b2019a223bf4f6b7691cdd with the message: ""Uses stricter interface for identifiers"" at 12:02:12+01:00.
+Commit ID: 1cf2e4cb3567d862c8862f9d854156185d5e28f2 with the message: ""fix: Updates webhook contract models (actions) (#134)"" at 04:59:12-06:00.","cypher
+MATCH (c:Commit)
+WHERE c.committedDate =~ '2024-01-29T.*'
+RETURN c.id AS commitId, c.message AS commitMessage, c.committedDate AS date","[{""commitId"": ""a805c57ffe91153d9d7b2fe5c746dd5a53c41a09"", ""commitMessage"": ""\""release\"""", ""date"": ""2024-01-29T12:58:36+01:00""}, {""commitId"": ""a31bbe65412c0faa3cbc45be00009db0e56bf8e4"", ""commitMessage"": ""\""chore(release): 5.8.2\"""", ""date"": ""2024-01-29T12:57:09+01:00""}, {""commitId"": ""d0ac2298db0ffba36b6b90cec38aceedde3a3963"", ""commitMessage"": ""\""fix: Adds components to element models\"""", ""date"": ""2024-01-29T12:56:51+01:00""}, {""commitId"": ""243999e7d745bac912270a991bbe7f219f417aa1"", ""commitMessage"": ""\""release\"""", ""date"": ""2024-01-29T12:07:29+01:00""}, {""commitId"": ""8bf1a5c1b67208b948bd458bc9c0a264a53bdcea"", ""commitMessage"": ""\""chore(release): 5.8.1\"""", ""date"": ""2024-01-29T12:07:23+01:00""}, {""commitId"": ""5d4868ebc149c1978e76134bada24ec8634183fb"", ""commitMessage"": ""\""fix: Fixes missing listQueryConfig when using toAllPromise\"""", ""date"": ""2024-01-29T12:06:58+01:00""}, {""commitId"": ""dc65a8f71e13e74fb11b846174d95e7a7422dc23"", ""commitMessage"": ""\""Uses singular naming for webhook types\"""", ""date"": ""2024-01-29T12:03:15+01:00""}, {""commitId"": ""3afcb453cd1bdfd567b2019a223bf4f6b7691cdd"", ""commitMessage"": ""\""Uses stricter interface for identifiers\"""", ""date"": ""2024-01-29T12:02:12+01:00""}, {""commitId"": ""1cf2e4cb3567d862c8862f9d854156185d5e28f2"", ""commitMessage"": ""\""fix: Updates webhook contract models (actions) (#134)\"""", ""date"": ""2024-01-29T04:59:12-06:00""}]",TRUE
+4,Master Student,3-5,1,Identify the bugs introduced by specific commits,"Here are some of the bugs introduced by specific commits:
+
+Commit 1cf2e4cb3567d862c8862f9d854156185d5e28f2 introduced the issue titled ""Add custom headers to webhooks"", created on February 6, 2024.
+Commit 6f8c7a5abcdc5fc334c7b2514f66ec7c951f5db7 introduced the issue titled ""Add support for Preview configuration"", created on January 11, 2023.
+Commit 788779bf1d9136b9135b58943836b1efca38eb1a introduced the issue titled ""ITaxonomyElementData is missing name property"", created on May 16, 2023.
+Commit e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e introduced the issue titled ""Add support for move operation for patch of content types and taxonomies"", created on April 2, 2024.
+Commit 04ff3b4ef3362591a068e310880a4de051c8c918 introduced the issue titled ""External id for options in multiple-options elements"", created on June 15, 2023.
+These are just a few examples, and there are more issues introduced by other commits as listed in the context.","cypher
+MATCH (c:Commit)-[:introduced]->(i:Issue)
+RETURN c.id AS commitId, i.id AS issueId, i.title AS issueTitle, i.createdAt AS issueCreatedAt","[{""commitId"": ""1cf2e4cb3567d862c8862f9d854156185d5e28f2"", ""issueId"": 139, ""issueTitle"": ""\""Add custom headers to webhooks\"""", ""issueCreatedAt"": ""2024-02-06T11:31:16Z""}, {""commitId"": ""6f8c7a5abcdc5fc334c7b2514f66ec7c951f5db7"", ""issueId"": 95, ""issueTitle"": ""\""Add support for Preview configuration\"""", ""issueCreatedAt"": ""2023-01-11T16:38:08Z""}, {""commitId"": ""788779bf1d9136b9135b58943836b1efca38eb1a"", ""issueId"": 113, ""issueTitle"": ""\""ITaxonomyElementData is missing name property\"""", ""issueCreatedAt"": ""2023-05-16T15:27:30Z""}, {""commitId"": ""e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e"", ""issueId"": 146, ""issueTitle"": ""\""Add support for move operation for patch of content types and taxonomies\"""", ""issueCreatedAt"": ""2024-04-02T12:28:05Z""}, {""commitId"": ""04ff3b4ef3362591a068e310880a4de051c8c918"", ""issueId"": 117, ""issueTitle"": ""\""External id for options in multiple-options elements\"""", ""issueCreatedAt"": ""2023-06-15T11:43:54Z""}, {""commitId"": ""d765d45e638c03a94e58e87721752c7a26bf9c6f"", ""issueId"": 124, ""issueTitle"": ""\""Add method to managementClient to retrieve asset using codename \"""", ""issueCreatedAt"": ""2023-10-09T19:08:52Z""}, {""commitId"": ""eb8a53cd419b265fe74f89ec77f37b39dea76773"", ""issueId"": 116, ""issueTitle"": ""\""Update workflow response model\"""", ""issueCreatedAt"": ""2023-06-09T12:31:08Z""}, {""commitId"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""issueId"": 87, ""issueTitle"": ""\""Failing mapping for type issues with listProjectValidationIssues()\"""", ""issueCreatedAt"": ""2022-09-27T19:52:03Z""}, {""commitId"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""issueId"": 96, ""issueTitle"": ""\""Add support for limiting Workflows to Collections\"""", ""issueCreatedAt"": ""2023-01-13T14:43:46Z""}, {""commitId"": ""2f651cc7e6b704ee5d1b2866c3c81f9dd62b8b24"", ""issueId"": 81, ""issueTitle"": ""\""Add support for the new async project validation endpoints\"""", ""issueCreatedAt"": ""2022-07-21T13:11:30Z""}, {""commitId"": ""b0620a8d20cc88f478d4d0dc16583171720837fa"", ""issueId"": 140, ""issueTitle"": ""\""Incorrect type of default value in IDateTimeElementData\"""", ""issueCreatedAt"": ""2024-02-06T14:30:00Z""}, {""commitId"": ""eb22c577d7e93c242c14c4f1c8b6cabb2b874dec"", ""issueId"": 84, ""issueTitle"": ""\""Add support for default value in Linked Items and Assets content type element\"""", ""issueCreatedAt"": ""2022-08-15T11:01:16Z""}, {""commitId"": ""29319246bde19dc841e49f343b8e2c31bbf88e86"", ""issueId"": 78, ""issueTitle"": ""\""Add support for update of a workflow\"""", ""issueCreatedAt"": ""2022-05-18T18:01:25Z""}, {""commitId"": ""d8f3f21419050a7335d2fd4e812ac02d7c13a24f"", ""issueId"": 74, ""issueTitle"": ""\""Add support for multiple workflows\"""", ""issueCreatedAt"": ""2022-03-15T11:56:39Z""}, {""commitId"": ""9e22f6e4167bbe75199f1e7228d79c70ff98bc6c"", ""issueId"": 71, ""issueTitle"": ""\""Add support for elements in Asset entity\"""", ""issueCreatedAt"": ""2022-02-28T12:33:10Z""}, {""commitId"": ""f80a2ac9a7499b4bd666d4171f9194e07b9972f4"", ""issueId"": 68, ""issueTitle"": ""\""Add support for Asset Renditions and their referencing\"""", ""issueCreatedAt"": ""2022-02-24T15:24:49Z""}, {""commitId"": ""678c9ed038d272729fac6125d665579a104c303d"", ""issueId"": 150, ""issueTitle"": ""\""Add support for copy data options for clone-environment endpoint\"""", ""issueCreatedAt"": ""2024-05-27T14:19:19Z""}, {""commitId"": ""01f7c8225ac318b41a6d40b9acc98bb6733f34e9"", ""issueId"": 48, ""issueTitle"": ""\""Add support for term limitations in Taxonomy element\"""", ""issueCreatedAt"": ""2021-07-08T11:22:02Z""}, {""commitId"": ""01f7c8225ac318b41a6d40b9acc98bb6733f34e9"", ""issueId"": 83, ""issueTitle"": ""\""Snippet Element does not use specified codename\"""", ""issueCreatedAt"": ""2022-08-03T10:25:26Z""}, {""commitId"": ""01f7c8225ac318b41a6d40b9acc98bb6733f34e9"", ""issueId"": 118, ""issueTitle"": ""\""Codename for url slug element is incorrectly required\"""", ""issueCreatedAt"": ""2023-06-15T11:55:06Z""}, {""commitId"": ""13d9b84ac36663a3689dbd9f6ea19c5293d10247"", ""issueId"": 46, ""issueTitle"": ""\""Different types for element on content type when retrieving and creating content types\"""", ""issueCreatedAt"": ""2021-05-26T09:21:28Z""}, {""commitId"": ""d54a0b8ab94d411056bccb194a87fcd19bf86592"", ""issueId"": 82, ""issueTitle"": ""\""uploadAssetFromUrl hangs indefinitely\"""", ""issueCreatedAt"": ""2022-07-21T13:31:03Z""}, {""commitId"": ""d54a0b8ab94d411056bccb194a87fcd19bf86592"", ""issueId"": 122, ""issueTitle"": ""\""Add asset codename\"""", ""issueCreatedAt"": ""2023-08-18T09:22:27Z""}, {""commitId"": ""6123ea087eda96364b1f4903e1d8c394ec5c9b36"", ""issueId"": 18, ""issueTitle"": ""\""Allow user to upload asset by remote URL\"""", ""issueCreatedAt"": ""2020-05-27T09:04:23Z""}, {""commitId"": ""f12a877d392f984c0e2c3eb1d675581e7706e69b"", ""issueId"": 50, ""issueTitle"": ""\""id is not assignable to IRichTextComponent\"""", ""issueCreatedAt"": ""2021-08-20T11:39:04Z""}, {""commitId"": ""01b0d713911a8c784c927c1fb30a3ddf02b9310e"", ""issueId"": 10, ""issueTitle"": ""\""Add item elements URL generation\"""", ""issueCreatedAt"": ""2018-05-22T10:27:10Z""}, {""commitId"": ""b0193384edc7179d09ed424a2e721a11297d0184"", ""issueId"": 44, ""issueTitle"": ""\""Unable to set `content_group` for elements based on Content Type Snippets\"""", ""issueCreatedAt"": ""2021-05-20T09:44:20Z""}, {""commitId"": ""e4c003edf9dcf191d23ca17a289b1fed0a2d45f2"", ""issueId"": 28, ""issueTitle"": ""\""Adding support for scheduled unpublish in MAPIv2\"""", ""issueCreatedAt"": ""2020-11-27T15:32:40Z""}, {""commitId"": ""022e2679864fcce6dde36f2da34a48f98198196f"", ""issueId"": 26, ""issueTitle"": ""\""Add support for collection property in the Content item insert/update endpoints\"""", ""issueCreatedAt"": ""2020-09-21T09:56:20Z""}, {""commitId"": ""a3266892e391aadb1d6ae9da8f6fa6d67b5974fe"", ""issueId"": 15, ""issueTitle"": ""\""Feat: Add support for modify taxonomy group API Endpoint\"""", ""issueCreatedAt"": ""2020-05-20T09:36:58Z""}, {""commitId"": ""fc361577082bfe9ceb2f8ddb775a6434ec6776cb"", ""issueId"": 29, ""issueTitle"": ""\""Make ite_count_limit optional\"""", ""issueCreatedAt"": ""2020-12-03T16:54:28Z""}, {""commitId"": ""c4606c82e7ed8c84e3a7a012413d5c638d8eacce"", ""issueId"": 42, ""issueTitle"": ""\""ContentItemElement should extend IContentItemElementContract generics\"""", ""issueCreatedAt"": ""2021-05-17T20:33:52Z""}, {""commitId"": ""234f175865ea3dcf0e4852c91cbec19e1f2119e1"", ""issueId"": 49, ""issueTitle"": ""\""Add environment to ProjectInformationModel\"""", ""issueCreatedAt"": ""2021-07-28T18:05:42Z""}, {""commitId"": ""2393be1240b65a420310e774cedf5fc76af3059a"", ""issueId"": 3, ""issueTitle"": ""\""Using POST and not PATCH to modify languages\"""", ""issueCreatedAt"": ""2019-10-10T09:23:29Z""}, {""commitId"": ""2393be1240b65a420310e774cedf5fc76af3059a"", ""issueId"": 5, ""issueTitle"": ""\""Publishing with CM requires date in the future\"""", ""issueCreatedAt"": ""2019-10-15T10:31:31Z""}, {""commitId"": ""2393be1240b65a420310e774cedf5fc76af3059a"", ""issueId"": 7, ""issueTitle"": ""\""IModifyLanguageData model only valid for certain operations\"""", ""issueCreatedAt"": ""2019-10-31T14:59:13Z""}, {""commitId"": ""2393be1240b65a420310e774cedf5fc76af3059a"", ""issueId"": 12, ""issueTitle"": ""\""Adds missing references for creating content item\"""", ""issueCreatedAt"": ""2020-03-20T14:51:51Z""}, {""commitId"": ""2393be1240b65a420310e774cedf5fc76af3059a"", ""issueId"": 35, ""issueTitle"": ""\""Add workflow step codename to MAPI\"""", ""issueCreatedAt"": ""2021-02-08T07:50:18Z""}]",TRUE
+4,Master Student,3-5,2,"List the buggy commit(s) within a specific timeframe
+
+8/1/2022 6/1/2021 March 2023","Here are the buggy commits introduced within the specified timeframe:
+
+Commit ID: e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e
+
+Commit Message: ""feat!: Renames all project related properties & types & queries to reflect new environment naming conventions, also removes deprecated validateProject query""
+Issue Title: ""Add support for move operation for patch of content types and taxonomies""
+Issue Created At: 2024-04-02T12:28:05Z
+Commit ID: 04ff3b4ef3362591a068e310880a4de051c8c918
+
+Commit Message: ""added needed attributes to IMultipleChoice Option""
+Issue Title: ""External id for options in multiple-options elements""
+Issue Created At: 2023-06-15T11:43:54Z
+Commit ID: d765d45e638c03a94e58e87721752c7a26bf9c6f
+
+Commit Message: ""feat: Add spaces support (#105)""
+Issue Title: ""Add method to managementClient to retrieve asset using codename""
+Issue Created At: 2023-10-09T19:08:52Z
+Commit ID: eb8a53cd419b265fe74f89ec77f37b39dea76773
+
+Commit Message: ""adds collections to workflow contract and updates specs""
+Issue Title: ""Update workflow response model""
+Issue Created At: 2023-06-09T12:31:08Z
+Please note, these commits fall within the specified dates provided in the graph query results.","cypher
+MATCH (c:Commit)-[:introduced]->(i:Issue)
+WHERE c.committedDate =~ '2022-08-01.*' OR c.committedDate =~ '2021-06-01.*' OR c.committedDate =~ '2023-03-.*'
+RETURN c.id AS commitId, c.message AS commitMessage, i.title AS issueTitle, i.createdAt AS issueCreatedAt","[{""commitId"": ""e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e"", ""commitMessage"": ""\""feat!: Renames all project related properties & types & queries to reflect new environment naming conventions, also removes deprecated validateProject query\"""", ""issueTitle"": ""\""Add support for move operation for patch of content types and taxonomies\"""", ""issueCreatedAt"": ""2024-04-02T12:28:05Z""}, {""commitId"": ""04ff3b4ef3362591a068e310880a4de051c8c918"", ""commitMessage"": ""\""added needed attributes to IMultipleChoice Option\"""", ""issueTitle"": ""\""External id for options in multiple-options elements\"""", ""issueCreatedAt"": ""2023-06-15T11:43:54Z""}, {""commitId"": ""d765d45e638c03a94e58e87721752c7a26bf9c6f"", ""commitMessage"": ""\""feat: Add spaces support (#105)\"""", ""issueTitle"": ""\""Add method to managementClient to retrieve asset using codename \"""", ""issueCreatedAt"": ""2023-10-09T19:08:52Z""}, {""commitId"": ""eb8a53cd419b265fe74f89ec77f37b39dea76773"", ""commitMessage"": ""\""adds collections to workflow contract and updates specs\"""", ""issueTitle"": ""\""Update workflow response model\"""", ""issueCreatedAt"": ""2023-06-09T12:31:08Z""}]",TRUE
+4,Master Student,3-5,3,Identify the files affected by most bugs,"The file 'management-client.class.ts' is affected by the most bugs, with a total of 11 reported issues.","cypher
+MATCH (i:Issue)-[:impacted]->(f:File)
+RETURN f.name AS file, COUNT(i) AS bugCount
+ORDER BY bugCount DESC
+LIMIT 10","[{""file"": ""management-client.class.ts"", ""bugCount"": 11}, {""file"": ""imanagement-client.interface.ts"", ""bugCount"": 9}, {""file"": ""content-management-query-service.class.ts"", ""bugCount"": 5}, {""file"": ""content-type-element.models.ts"", ""bugCount"": 5}, {""file"": ""content-type-elements.builder.ts"", ""bugCount"": 3}, {""file"": ""modify-content-type.spec.ts"", ""bugCount"": 3}, {""file"": ""identifiers.ts"", ""bugCount"": 3}, {""file"": ""project-mapper.ts"", ""bugCount"": 3}, {""file"": ""add-content-type.spec.ts"", ""bugCount"": 3}, {""file"": ""management-query-service.class.ts"", ""bugCount"": 3}]",TRUE
+4,Master Student,3-5,4,Identify the commit that fixed a specific bug bug 116,"The commit that fixed the specific bug 116 is identified by the commit ID ""9a5d16178c2f844b2ae9bb85d8e17502fce7590a"". The commit message is: ""feat: adds scheduled_step property to workflow (fixes https://github.com/kontent-ai/management-sdk-js/issues/116)"".","cypher
+MATCH (c:Commit)-[:fixed]->(i:Issue {number: 116})
+RETURN c.id AS commitId, c.message AS commitMessage","[{""commitId"": ""9a5d16178c2f844b2ae9bb85d8e17502fce7590a"", ""commitMessage"": ""\""feat: adds scheduled_step property to workflow (fixes https://github.com/kontent-ai/management-sdk-js/issues/116)\""""}]",TRUE
+4,Master Student,3-5,5,Identify the commits that fixed a bug but also introduced a new bug,"The following commits fixed a bug but also introduced a new bug:
+
+Commit ID: d765d45e638c03a94e58e87721752c7a26bf9c6f
+
+Commit Message: ""feat: Add spaces support (#105)""
+Fixed Issue: ""Add support for limiting Workflows to Collections""
+Introduced Issue: ""Add method to managementClient to retrieve asset using codename ""
+Commit ID: ed06430098b0b9e4ffc6b9799ce22f33eb1bed04
+
+Commit Message: ""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)""
+Fixed Issue: ""Add support for the new async project validation endpoints""
+Introduced Issue:
+""Failing mapping for type issues with listProjectValidationIssues()""
+""Add support for limiting Workflows to Collections""
+Commit ID: 29319246bde19dc841e49f343b8e2c31bbf88e86
+
+Commit Message: ""feat: Implements new workflow endpoints (https://github.com/Kentico/kontent-management-sdk-js/issues/74)""
+Fixed Issue: ""Add support for multiple workflows""
+Introduced Issue: ""Add support for update of a workflow""
+Commit ID: d8f3f21419050a7335d2fd4e812ac02d7c13a24f
+
+Commit Message: ""feat: adds support for taxonomy elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/71)""
+Fixed Issue: ""Add support for elements in Asset entity""
+Introduced Issue: ""Add support for multiple workflows""
+Commit ID: 9e22f6e4167bbe75199f1e7228d79c70ff98bc6c
+
+Commit Message: ""feat: adds support for asset rendition endpoints (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/68)""
+Fixed Issue: ""Add support for Asset Renditions and their referencing""
+Introduced Issue: ""Add support for elements in Asset entity""
+Commit ID: 01f7c8225ac318b41a6d40b9acc98bb6733f34e9
+
+Commit Message: ""feat: adds types support for content type elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/46)""
+Fixed Issue: ""Different types for element on content type when retrieving and creating content types""
+Introduced Issues:
+""Add support for term limitations in Taxonomy element""
+""Snippet Element does not use specified codename""
+""Codename for url slug element is incorrectly required""
+Commit ID: d54a0b8ab94d411056bccb194a87fcd19bf86592
+
+Commit Message: ""feat: adds support for uploading assets & binary files from url (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/18), adds automatic mime type detection support""
+Fixed Issue: ""Allow user to upload asset by remote URL""
+Introduced Issues:
+""uploadAssetFromUrl hangs indefinitely""
+""Add asset codename""
+Commit ID: 022e2679864fcce6dde36f2da34a48f98198196f
+
+Commit Message: ""feat: adds missing type properties to content item contract (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/12)""
+Fixed Issue: ""Adds missing references for creating content item""
+Introduced Issue: ""Add support for collection property in the Content item insert/update endpoints""","cypher
+MATCH (c:Commit)-[:fixed]->(fixedIssue:Issue), (c)-[:introduced]->(introducedIssue:Issue)
+RETURN c.id AS commitId, c.message AS commitMessage, 
+ fixedIssue.id AS fixedIssueId, fixedIssue.title AS fixedIssueTitle, 
+ introducedIssue.id AS introducedIssueId, introducedIssue.title AS introducedIssueTitle","[{""commitId"": ""d765d45e638c03a94e58e87721752c7a26bf9c6f"", ""commitMessage"": ""\""feat: Add spaces support (#105)\"""", ""fixedIssueId"": 96, ""fixedIssueTitle"": ""\""Add support for limiting Workflows to Collections\"""", ""introducedIssueId"": 124, ""introducedIssueTitle"": ""\""Add method to managementClient to retrieve asset using codename \""""}, {""commitId"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""commitMessage"": ""\""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)\"""", ""fixedIssueId"": 81, ""fixedIssueTitle"": ""\""Add support for the new async project validation endpoints\"""", ""introducedIssueId"": 87, ""introducedIssueTitle"": ""\""Failing mapping for type issues with listProjectValidationIssues()\""""}, {""commitId"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""commitMessage"": ""\""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)\"""", ""fixedIssueId"": 81, ""fixedIssueTitle"": ""\""Add support for the new async project validation endpoints\"""", ""introducedIssueId"": 96, ""introducedIssueTitle"": ""\""Add support for limiting Workflows to Collections\""""}, {""commitId"": ""29319246bde19dc841e49f343b8e2c31bbf88e86"", ""commitMessage"": ""\""feat: Implements new workflow endpoints (https://github.com/Kentico/kontent-management-sdk-js/issues/74)\"""", ""fixedIssueId"": 74, ""fixedIssueTitle"": ""\""Add support for multiple workflows\"""", ""introducedIssueId"": 78, ""introducedIssueTitle"": ""\""Add support for update of a workflow\""""}, {""commitId"": ""d8f3f21419050a7335d2fd4e812ac02d7c13a24f"", ""commitMessage"": ""\""feat: adds support for taxonomy elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/71)\"""", ""fixedIssueId"": 71, ""fixedIssueTitle"": ""\""Add support for elements in Asset entity\"""", ""introducedIssueId"": 74, ""introducedIssueTitle"": ""\""Add support for multiple workflows\""""}, {""commitId"": ""9e22f6e4167bbe75199f1e7228d79c70ff98bc6c"", ""commitMessage"": ""\""feat: adds support for asset rendition endpoints (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/68)\"""", ""fixedIssueId"": 68, ""fixedIssueTitle"": ""\""Add support for Asset Renditions and their referencing\"""", ""introducedIssueId"": 71, ""introducedIssueTitle"": ""\""Add support for elements in Asset entity\""""}, {""commitId"": ""01f7c8225ac318b41a6d40b9acc98bb6733f34e9"", ""commitMessage"": ""\""feat: adds types support for content type elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/46)\"""", ""fixedIssueId"": 46, ""fixedIssueTitle"": ""\""Different types for element on content type when retrieving and creating content types\"""", ""introducedIssueId"": 48, ""introducedIssueTitle"": ""\""Add support for term limitations in Taxonomy element\""""}, {""commitId"": ""01f7c8225ac318b41a6d40b9acc98bb6733f34e9"", ""commitMessage"": ""\""feat: adds types support for content type elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/46)\"""", ""fixedIssueId"": 46, ""fixedIssueTitle"": ""\""Different types for element on content type when retrieving and creating content types\"""", ""introducedIssueId"": 83, ""introducedIssueTitle"": ""\""Snippet Element does not use specified codename\""""}, {""commitId"": ""01f7c8225ac318b41a6d40b9acc98bb6733f34e9"", ""commitMessage"": ""\""feat: adds types support for content type elements (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/46)\"""", ""fixedIssueId"": 46, ""fixedIssueTitle"": ""\""Different types for element on content type when retrieving and creating content types\"""", ""introducedIssueId"": 118, ""introducedIssueTitle"": ""\""Codename for url slug element is incorrectly required\""""}, {""commitId"": ""d54a0b8ab94d411056bccb194a87fcd19bf86592"", ""commitMessage"": ""\""feat: adds support for uploading assets & binary files from url (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/18), adds automatic mime type detection support\"""", ""fixedIssueId"": 18, ""fixedIssueTitle"": ""\""Allow user to upload asset by remote URL\"""", ""introducedIssueId"": 82, ""introducedIssueTitle"": ""\""uploadAssetFromUrl hangs indefinitely\""""}, {""commitId"": ""d54a0b8ab94d411056bccb194a87fcd19bf86592"", ""commitMessage"": ""\""feat: adds support for uploading assets & binary files from url (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/18), adds automatic mime type detection support\"""", ""fixedIssueId"": 18, ""fixedIssueTitle"": ""\""Allow user to upload asset by remote URL\"""", ""introducedIssueId"": 122, ""introducedIssueTitle"": ""\""Add asset codename\""""}, {""commitId"": ""022e2679864fcce6dde36f2da34a48f98198196f"", ""commitMessage"": ""\""feat: adds missing type properties to content item contract (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/12)\"""", ""fixedIssueId"": 12, ""fixedIssueTitle"": ""\""Adds missing references for creating content item\"""", ""introducedIssueId"": 26, ""introducedIssueTitle"": ""\""Add support for collection property in the Content item insert/update endpoints\""""}]",TRUE
+4,Master Student,3-5,6,Identify the number of commits within a specific period 10/1/2024 - 8/1/2024,"The number of commits within the specified period from August 1, 2024, to October 1, 2024, is 19. Can I help with anything else?","cypher
+MATCH (c:Commit)
+WHERE c.committedDate >= ""2024-08-01T00:00:00Z"" AND c.committedDate <= ""2024-10-01T23:59:59Z""
+RETURN COUNT(c) AS numberOfCommits","[{""numberOfCommits"": 19}]",TRUE
+4,Master Student,3-5,7,Identify the developer(s) who have experience fixing bugs related to a specific file. management-client.class.ts imanagement-client.interface.ts content-type-element.models.ts,"The developers who have experience fixing bugs related to the specified files are:
+
+Richard Sustek, who has fixed 6 bugs in each of the files: management-client.class.ts, imanagement-client.interface.ts, and content-type-element.models.ts.
+Enngage, who has fixed 5 bugs in management-client.class.ts and imanagement-client.interface.ts, and 2 bugs in content-type-element.models.ts.
+Nick Margaritondo, who has fixed 1 bug in each of the files: management-client.class.ts, imanagement-client.interface.ts, and content-type-element.models.ts.","cypher
+MATCH (u:User)-[:author]->(c:Commit)-[:changed]->(f:File)
+WHERE f.name IN ['management-client.class.ts', 'imanagement-client.interface.ts', 'content-type-element.models.ts']
+AND (c)-[:fixed]->(:Issue)
+RETURN u.name AS developer, f.name AS file, COUNT(c) AS fixes
+ORDER BY fixes DESC","[{""developer"": ""Richard Sustek"", ""file"": ""content-type-element.models.ts"", ""fixes"": 6}, {""developer"": ""Richard Sustek"", ""file"": ""imanagement-client.interface.ts"", ""fixes"": 6}, {""developer"": ""Richard Sustek"", ""file"": ""management-client.class.ts"", ""fixes"": 6}, {""developer"": ""Enngage"", ""file"": ""imanagement-client.interface.ts"", ""fixes"": 5}, {""developer"": ""Enngage"", ""file"": ""management-client.class.ts"", ""fixes"": 5}, {""developer"": ""Enngage"", ""file"": ""content-type-element.models.ts"", ""fixes"": 2}, {""developer"": ""Nick Margaritondo"", ""file"": ""content-type-element.models.ts"", ""fixes"": 1}, {""developer"": ""Nick Margaritondo"", ""file"": ""imanagement-client.interface.ts"", ""fixes"": 1}, {""developer"": ""Nick Margaritondo"", ""file"": ""management-client.class.ts"", ""fixes"": 1}]",TRUE
+4,Master Student,3-5,8,Identify the developer(s) with the highest number of unresolved bugs,I don't know the answer as the context provided is empty. Can I help with anything else?,"cypher
+MATCH (u:User)-[:creates]->(i:Issue)
+WHERE i.state <> 'closed'
+RETURN u.name AS developer, COUNT(i) AS unresolved_bugs
+ORDER BY unresolved_bugs DESC
+LIMIT 10",[],FALSE
+4,Master Student,3-5,9,Identify the details about the changes that occurred on identifiers.ts and project-mapper.ts,"The changes that occurred on the files identifiers.ts and project-mapper.ts are as follows:
+
+identifiers.ts:
+
+Commit 0401cf3463400ef82fa093e33d9e7ea422e033c1: Added delete webhook endpoint support with 18 additions and 0 deletions.
+Commit 3632e4798ad1f481d81b2e3fc52d9c821fbd01ac: Fixed some webhook-related typos with 3 additions and 3 deletions.
+Commit 662c67fe574e571c4035a20a2a32bf917892ed75: Made lint fixes and used a proper response JSON for adding space with 1 addition and 1 deletion.
+Commit 6c2d3a112c507c64d47ee717388e138e673d3374: Merged a pull request for missing methods with 18 additions and 0 deletions.
+Commit 6ee460376ecd57b35a2d675982620c1579b8e2d0: Added support for fetching assets by codename with 5 additions and 3 deletions.
+Commit 98f1ddf020663beb325759fba10ed9f175c0dda8: Added support for codename in workflow-related endpoints and queries with 5 additions and 1 deletion.
+Commit 9e22f6e4167bbe75199f1e7228d79c70ff98bc6c: Added support for asset rendition endpoints with 19 additions and 0 deletions.
+Commit acb653c58a4f867faf0ad3c6a692bf3d3562273e: Added support for view role with 29 additions and 43 deletions.
+Commit d765d45e638c03a94e58e87721752c7a26bf9c6f: Added spaces support with 25 additions and 0 deletions.
+Commit e43ccc3f3221cdc5f75ca2697988a9c70dc2e6d5: Added support for Subscription API with 40 additions and 0 deletions.
+Commit e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e: Renamed project-related properties and types with 4 additions and 4 deletions.
+Commit ed06430098b0b9e4ffc6b9799ce22f33eb1bed04: Added support for new validation endpoints with 17 additions and 1 deletion.
+Commit f12a877d392f984c0e2c3eb1d675581e7706e69b: Added support for listing language variants by collection with 26 additions and 0 deletions.
+project-mapper.ts:
+
+Commit 01b0d713911a8c784c927c1fb30a3ddf02b9310e: Refactored library await and added support for cancelling requests with 3 additions and 3 deletions.
+Commit 234f175865ea3dcf0e4852c91cbec19e1f2119e1: Added support for project information endpoint with 10 additions and 1 deletion.
+Commit 3b49ccf5b3dea4ec0c6b8299e7d99bc2904ca4ff: Added environment to project information with 1 addition and 1 deletion.
+Commit 5e02276397191fcc43645977eb09a6ea01bf33e1: Fixed mapping of type and variant issue types with 17 additions and 7 deletions.
+Commit c01804fa694e0be83b80a233edb78cd09f6c5f36: Exposed more mapping methods with 8 additions and 8 deletions.
+Commit c6b8fd07460f4d3ad1c62397d5cd8ed46dca18c3: Rebranded with 1 addition and 1 deletion.
+Commit e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e: Deleted with 0 additions and 129 deletions.
+Commit ed06430098b0b9e4ffc6b9799ce22f33eb1bed04: Added support for new validation endpoints with 59 additions and 13 deletions.","cypher
+MATCH (c:Commit)-[ch:changed]->(f:File)
+WHERE f.name IN ['identifiers.ts', 'project-mapper.ts']
+RETURN f.name AS file, c.id AS commitId, c.message AS commitMessage, ch.additions AS additions, ch.deletions AS deletions, ch.changeType AS changeType
+ORDER BY f.name, c.id","[{""file"": ""identifiers.ts"", ""commitId"": ""0401cf3463400ef82fa093e33d9e7ea422e033c1"", ""commitMessage"": ""\""Add delete webhook endpoint support\"""", ""additions"": 18, ""deletions"": 0, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""3632e4798ad1f481d81b2e3fc52d9c821fbd01ac"", ""commitMessage"": ""\""fixes few webhook related typos\"""", ""additions"": 3, ""deletions"": 3, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""662c67fe574e571c4035a20a2a32bf917892ed75"", ""commitMessage"": ""\""lint fixes, uses proper response json for add space\"""", ""additions"": 1, ""deletions"": 1, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""6c2d3a112c507c64d47ee717388e138e673d3374"", ""commitMessage"": ""\""Merge pull request #2 from michalpaukert/cmapi-missing-methods\"""", ""additions"": 18, ""deletions"": 0, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""6ee460376ecd57b35a2d675982620c1579b8e2d0"", ""commitMessage"": ""\""feat: Adds support for fetching assets by codename (fixes https://github.com/kontent-ai/management-sdk-js/issues/124)\"""", ""additions"": 5, ""deletions"": 3, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""98f1ddf020663beb325759fba10ed9f175c0dda8"", ""commitMessage"": ""\""feat: adds support for codename in workflow related endpoints & queries (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/35)\"""", ""additions"": 5, ""deletions"": 1, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""9e22f6e4167bbe75199f1e7228d79c70ff98bc6c"", ""commitMessage"": ""\""feat: adds support for asset rendition endpoints (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/68)\"""", ""additions"": 19, ""deletions"": 0, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""acb653c58a4f867faf0ad3c6a692bf3d3562273e"", ""commitMessage"": ""\""feat: Adds support for view role\"""", ""additions"": 29, ""deletions"": 43, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""d765d45e638c03a94e58e87721752c7a26bf9c6f"", ""commitMessage"": ""\""feat: Add spaces support (#105)\"""", ""additions"": 25, ""deletions"": 0, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""e43ccc3f3221cdc5f75ca2697988a9c70dc2e6d5"", ""commitMessage"": ""\""feat!: Adds support for Subscription API (subscription projects & users), updates client configuration by separating management & subscription endpoints (renames apiKey to managementApiKey)\"""", ""additions"": 40, ""deletions"": 0, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e"", ""commitMessage"": ""\""feat!: Renames all project related properties & types & queries to reflect new environment naming conventions, also removes deprecated validateProject query\"""", ""additions"": 4, ""deletions"": 4, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""commitMessage"": ""\""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)\"""", ""additions"": 17, ""deletions"": 1, ""changeType"": ""modified""}, {""file"": ""identifiers.ts"", ""commitId"": ""f12a877d392f984c0e2c3eb1d675581e7706e69b"", ""commitMessage"": ""\""feat: adds support for listing language variants by collection\"""", ""additions"": 26, ""deletions"": 0, ""changeType"": ""modified""}, {""file"": ""project-mapper.ts"", ""commitId"": ""01b0d713911a8c784c927c1fb30a3ddf02b9310e"", ""commitMessage"": ""\""feat!: refactors library await from rjx (removes all observable related features), adds support for cancelling request via cancel tokens\"""", ""additions"": 3, ""deletions"": 3, ""changeType"": ""modified""}, {""file"": ""project-mapper.ts"", ""commitId"": ""234f175865ea3dcf0e4852c91cbec19e1f2119e1"", ""commitMessage"": ""\""feat: adds support for project information endpoint\"""", ""additions"": 10, ""deletions"": 1, ""changeType"": ""modified""}, {""file"": ""project-mapper.ts"", ""commitId"": ""3b49ccf5b3dea4ec0c6b8299e7d99bc2904ca4ff"", ""commitMessage"": ""\""feat: adds environment to project information (fixes https://github.com/Kentico/kontent-management-sdk-js/issues/49)\"""", ""additions"": 1, ""deletions"": 1, ""changeType"": ""modified""}, {""file"": ""project-mapper.ts"", ""commitId"": ""5e02276397191fcc43645977eb09a6ea01bf33e1"", ""commitMessage"": ""\""fix: Fixes mapping of type & variant issue types in new validation endpoint (fixes https://github.com/kontent-ai/management-sdk-js/issues/87)\"""", ""additions"": 17, ""deletions"": 7, ""changeType"": ""modified""}, {""file"": ""project-mapper.ts"", ""commitId"": ""c01804fa694e0be83b80a233edb78cd09f6c5f36"", ""commitMessage"": ""\""feat: exposes more mapping methods (e.g. mapping contentType instead of whole response)\"""", ""additions"": 8, ""deletions"": 8, ""changeType"": ""modified""}, {""file"": ""project-mapper.ts"", ""commitId"": ""c6b8fd07460f4d3ad1c62397d5cd8ed46dca18c3"", ""commitMessage"": ""\""rebranding\"""", ""additions"": 1, ""deletions"": 1, ""changeType"": ""modified""}, {""file"": ""project-mapper.ts"", ""commitId"": ""e99f007cdf8aef3d2a47274fa8bf77e455a1ac9e"", ""commitMessage"": ""\""feat!: Renames all project related properties & types & queries to reflect new environment naming conventions, also removes deprecated validateProject query\"""", ""additions"": 0, ""deletions"": 129, ""changeType"": ""deleted""}, {""file"": ""project-mapper.ts"", ""commitId"": ""ed06430098b0b9e4ffc6b9799ce22f33eb1bed04"", ""commitMessage"": ""\""feat: Adds support for new validation endpoints (fixes https://github.com/kontent-ai/management-sdk-js/issues/81)\"""", ""additions"": 59, ""deletions"": 13, ""changeType"": ""modified""}]",TRUE
+4,Master Student,3-5,10,Identify the commit information on 3 Oct 2024,"On 3rd October 2024, the following commits were made:
+
+Commit ID: 516b70b998e4f0ca388a300651aa10c8d2f312ea
+Message: ""Update sdk-info.generated.ts""
+Date: 2024-10-03T11:27:04+02:00
+
+Commit ID: 15bbde777f0625048bf34352fbfe6a260d275d6e
+Message: ""chore(release): 7.4.0""
+Date: 2024-10-03T11:26:57+02:00
+
+Commit ID: bd1b082368d5987a56e12cff6e57488fc4b83bf6
+Message: ""feat: adds display_timezone to ContentItemElement class. Fixes mapping of components in element""
+Date: 2024-10-03T11:26:39+02:00","cypher
+MATCH (c:Commit)
+WHERE c.committedDate =~ '2024-10-03T.*'
+RETURN c.id AS commitId, c.message AS commitMessage, c.committedDate AS date","[{""commitId"": ""516b70b998e4f0ca388a300651aa10c8d2f312ea"", ""commitMessage"": ""\""Update sdk-info.generated.ts\"""", ""date"": ""2024-10-03T11:27:04+02:00""}, {""commitId"": ""15bbde777f0625048bf34352fbfe6a260d275d6e"", ""commitMessage"": ""\""chore(release): 7.4.0\"""", ""date"": ""2024-10-03T11:26:57+02:00""}, {""commitId"": ""bd1b082368d5987a56e12cff6e57488fc4b83bf6"", ""commitMessage"": ""\""feat: adds display_timezone to ContentItemElement class. Fixes mapping of components in element\"""", ""date"": ""2024-10-03T11:26:39+02:00""}]",TRUE
