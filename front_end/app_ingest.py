@@ -22,6 +22,33 @@ def ingest_data(gh_token):
 def ingest_screen():
     st.title("Ingest Your Data")
 
+    with st.expander("ℹ️ How to Use This App"):
+        st.markdown("""
+        **Setup Steps:**
+
+        1. **Neo4j Instance:**
+           - **Cloud:** [Neo4j Aura](https://neo4j.com/cloud/aura/) - Create a free or paid instance.
+           - **Local:** Download and install from [Neo4j Download Center](https://neo4j.com/download-center/).
+
+        2. **Obtain Neo4j Credentials:**
+           - **URI:** e.g., `bolt://localhost:7687` or from Neo4j Aura dashboard.
+           - **Username:** Typically `neo4j`.
+           - **Password:** Set during Neo4j setup.
+
+        3. **Generate GitHub Token:**
+           - Go to GitHub **Settings > Developer settings > Personal access tokens > Tokens (classic) **.
+           - Click **"Generate new token"**. 
+           - Copy and save the token securely.
+
+        4. **Permissions:**
+           - Ensure the token has access to query GitHub's GraphQL API.
+
+        **Using the App:**
+
+        - Fill in the repository URL, GitHub token, and Neo4j credentials.
+        - Click **"Ingest Data"** to start the process.
+        """)
+
     st.session_state['ingest_successful'] = False
     st.session_state['messages'] = []
 

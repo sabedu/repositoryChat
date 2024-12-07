@@ -2,12 +2,16 @@ import streamlit as st
 from app_chat import chat_screen
 
 def demo_screen():
-    st.title("This is Demo Interaction!")
+    st.title("🎬 Demo Interaction!")
 
     repo_name = st.secrets.REPO_URL.split('/')[-1]
-    st.write(f"You can interact with the {repo_name} project. This is the pre-ingested project for demonstration.")
+    st.write(f"You can interact with the **{repo_name}** project. This is the pre-ingested project for demonstration purposes.")
 
-    if st.button("Start Demo Chat"):
+    with st.expander("📹 Watch Demo Tutorial"):
+        st.video("https://youtu.be/PIFdUiOfpWo")
+
+    st.write("### Ready to Chat?")
+    if st.button("🚀 Start Demo Chat"):
         st.session_state['repo_url'] = st.secrets.REPO_URL
         st.session_state['neo4j_uri'] = st.secrets.NEO4J_URI
         st.session_state['neo4j_user'] = st.secrets.NEO4J_USER
@@ -18,9 +22,8 @@ def demo_screen():
         st.session_state['in_demo_mode'] = True
         st.rerun()
 
-    st.write("Or you can ingest your own data.")
-
-    if st.button("Ingest Your Own Data"):
+    st.write("### Or Ingest Your Own Data")
+    if st.button("📥 Ingest Your Own Data"):
         st.session_state['demo_used'] = True 
         st.session_state['in_demo_mode'] = False
         st.rerun()

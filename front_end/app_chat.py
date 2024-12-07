@@ -29,28 +29,66 @@ def chat_screen():
     """Function to render the chat interface."""
     repo_url = st.session_state.get('repo_url', st.secrets.REPO_URL)
     repo_name = repo_url.split('/')[-1] if repo_url else "Demo Repository"
-    st.title(f"Chatting with {repo_name}")
+    st.title(f"💬 Chat with {repo_name} Bot")
 
-    _, col3_ = st.columns([0.4, 0.6])
+    # _, col3_ = st.columns([0.4, 0.6])
 
-    with col3_:
-        if st.session_state.get('in_demo_mode', False):
-            if st.button("Ingest Your Own Data"):
+    if st.session_state.get('in_demo_mode', False):
+        with st.expander("ℹ️ How to Use the Chat"):
+            st.markdown("""
+            **Getting Started:**
+
+            1. **Start Chatting:**
+            - Type your queries in the input box below and interact with the bot to get insights from your GitHub repository.
+                        
+            2. **You Can Ingest Your Own Data:**
+            - Click on the Ingest Your Own Data button to ingest your own GitHub repository data.
+
+            **Example Questions You Can Ask:**
+
+            1. **"Who has the most contributions in this project?"**
+            2. **"Who introduced the most bugs?"**
+            3. **"Which commit fixed bug X"**
+            """)
+
+        _, col3_ = st.columns([0.4, 0.6])
+
+        with col3_: 
+            if st.button("🚀 Ingest Your Own Data"):
                 st.session_state['demo_used'] = True
-                st.session_state['ingest_successful'] = False  # Reset ingest status
+                st.session_state['ingest_successful'] = False 
                 st.session_state['in_demo_mode'] = False
                 st.rerun()
-        else:
+    else:
+        with st.expander("ℹ️ How to Use the Chat"):
+            st.markdown("""
+            **Getting Started:**
+                        
+            1. **Enter Your OpenAI API Key:**
+            - Provide your OpenAI API key to authenticate and enable the chat functionality.
+
+            2. **Start Chatting:**
+            - Type your queries in the input box below and interact with the bot to get insights from your GitHub repository.
+
+            **Example Questions You Can Ask:**
+
+            1. **"Who has the most contributions in this project?"**
+            2. **"Who introduced the most bugs?"**
+            3. **"Which commit fixed bug X"**
+            """)
+
+        _, col3_ = st.columns([0.4, 0.6])
+        with col3_:
             token = st.text_input(
-                label="Enter your OpenAI API key",
+                label="🔑 Enter your OpenAI API Key",
                 type="password",
                 label_visibility="visible",
                 key="openai_api_key"
             )
-            if token:
-                st.session_state['authorization'] = token
-            else:
-                st.session_state['authorization'] = st.secrets.get('OPEN_AI_API_KEY', '')
+        if token:
+            st.session_state['authorization'] = token
+        else:
+            st.session_state['authorization'] = st.secrets.get('OPEN_AI_API_KEY', '')
 
     if 'messages' not in st.session_state:
         st.session_state.messages = []
@@ -65,7 +103,7 @@ def chat_screen():
                 st.markdown(content)
                 app_display_context(context)
 
-    query = st.chat_input("Enter your query:")
+    query = st.chat_input("💬 Enter your query here:")
 
     if query:
         with st.chat_message("user"):
@@ -96,7 +134,7 @@ def chat_screen():
                     time.sleep(0.005)
                 app_display_context(context)
             else:
-                st.error(f"Chat failed: {response.text}")
+                st.error(f"❌ Chat failed: {response.text}")
                 bot_response = f"Error: {response.text}"
                 context = ''
 
