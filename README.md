@@ -12,7 +12,6 @@ It is accesible at https://repochattool.streamlit.app/
 - [Usage](#usage)
 - [Examples](#examples)
 - [Troubleshooting](#troubleshooting)
-- [Video Tutorial](#video-tutorial)
 
 ## Features
 
@@ -146,15 +145,5 @@ It is accesible at https://repochattool.streamlit.app/
     Verify the REDIS_HOST configuration in your .env file.
     Module Compatibility Issues
 
-    Make sure you're using Python 3.10, as some dependencies may not be compatible with other versions.
-    Backend API Not Responding
-
     Check if the FastAPI backend is running.
     Verify the BASE_URL in .streamlit/secrets.toml.
-
-## Video Tutorial
-    For a step-by-step guide on how to use the tool, watch the video tutorial:
-
-
-
-    Replace VIDEO_ID with the actual YouTube video ID.
