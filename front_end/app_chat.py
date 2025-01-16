@@ -1,4 +1,3 @@
-# app_chat.py
 import streamlit as st
 import requests
 import time
@@ -30,8 +29,6 @@ def chat_screen():
     repo_url = st.session_state.get('repo_url', st.secrets.REPO_URL)
     repo_name = repo_url.split('/')[-1] if repo_url else "Demo Repository"
     st.title(f"💬 Chat with {repo_name} Bot")
-
-    # _, col3_ = st.columns([0.4, 0.6])
 
     if st.session_state.get('in_demo_mode', False):
         with st.expander("ℹ️ How to Use the Chat"):

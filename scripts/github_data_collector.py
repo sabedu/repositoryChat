@@ -22,7 +22,6 @@ class GitHubDataCollector:
         self.repo_path = f'repos/{self.repo_name}'
         os.makedirs(self.base_dir, exist_ok=True)
         self.headers = {"Authorization": f"Bearer {token}"}
-        # self.repo = self.github.get_repo(f"{self.repo_owner}/{self.repo_name}")
         if not os.path.exists(self.repo_path):
             os.makedirs(self.repo_path)
             try:

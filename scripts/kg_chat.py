@@ -7,7 +7,7 @@ from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 from os import getenv
 from langsmith import traceable
-from consts import (FEW_SHOT_CYPHER_TEMPLATE, ZERO_SHOT_CYPHER_TEMPLATE, GENERATION_TEMPLATE,
+from consts import (FEW_SHOT_CYPHER_TEMPLATE, GENERATION_TEMPLATE,
                     ZERO_SHOT_CYPHER_TEMPLATE_LLAMA, FEW_SHOT_CYPHER_TEMPLATE_LLAMA, GENERATION_TEMPLATE_LLAMA)
 from scripts.core.graph_cypher_chain_patch import PatchedGraphCypherQAChain
 from logging import getLogger

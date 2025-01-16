@@ -1,5 +1,3 @@
-from os import getenv
-from dotenv import load_dotenv
 from neo4j import GraphDatabase
 from logging import getLogger
 
@@ -8,10 +6,9 @@ logger = getLogger(__name__)
 
 class Neo4jClient:
     def __init__(self, neo4j_uri, neo4j_user, neo4j_password):
-        # load_dotenv()
-        self.uri = neo4j_uri #getenv("NEO4J_URI")
-        self.user = neo4j_user #getenv('NEO4J_USER')
-        self.password = neo4j_password #getenv('NEO4J_PASSWORD')
+        self.uri = neo4j_uri 
+        self.user = neo4j_user 
+        self.password = neo4j_password
         self.driver = GraphDatabase.driver(self.uri, auth=(self.user, self.password))
 
     def get_graph(self):

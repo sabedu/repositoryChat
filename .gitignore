@@ -6,7 +6,7 @@ data
 _szztemp
 repos
 .DS_Store
-.streamlit
+.streamlit/secrets.toml
 logs/
 venv/
 logs_op/

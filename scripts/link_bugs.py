@@ -16,16 +16,6 @@ class LinkBugs():
         self.output = f"data/{self.repo_name}/{self.repo_name}_fixing_bic.json"
         self.updated_output = f"data/new_{self.repo_name}/{self.repo_name}_fixing_bic.json"
 
-        # if not os.path.exists(self.repo_dir):
-        #     os.makedirs(self.repo_dir)
-        #     try:
-        #         os.system(f"git clone {self.repo_url} {self.repo_dir}")
-        #         logging.info(f"Repository {self.repo_name} cloned successfully")
-        #     except Exception as e:
-        #         logging.error(f"Error cloning repository: {e}")
-        # else:
-        #     logging.info(f"Repository {self.repo_name} already exists")
-        #     os.system(f"git -C {self.repo_dir} pull")
 
         logging.basicConfig(filename=f'{self.repo_owner}_{self.repo_name}_console.log', filemode='w',
                             format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -39,14 +29,6 @@ class LinkBugs():
         except FileNotFoundError:
             print("No issues file found.")
             return
-        # if not os.path.exists(self.output):
-        #     issues_df = pd.read_json(self.issue_json)
-        # else:
-        #     try:
-        #         issues_df = pd.read_json(self.updated_issue_json)
-        #     except FileNotFoundError:
-        #         print("No updated issues file found.")
-        #         return
         results = self.process_issues_df(issues_df)
 
         if not os.path.exists(self.output):
